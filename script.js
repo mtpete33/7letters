@@ -112,8 +112,15 @@ function updateMessage(text) {
 async function checkWordValidity(word) {
   try {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
-    return response.ok;
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.log(`API Error for word "${word}":`, errorData);
+      updateMessage(`API Error: ${errorData.message || 'Unknown error'}`);
+      return false;
+    }
+    return true;
   } catch (error) {
+    console.log(`Error checking word "${word}":`, error);
     return false;
   }
 }
