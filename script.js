@@ -84,7 +84,16 @@ function updateMessage(text) {
   setTimeout(() => messageDiv.textContent = '', 3000);
 }
 
-function submitWord() {
+async function checkWordValidity(word) {
+  try {
+    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
+    return response.ok;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function submitWord() {
   const input = document.getElementById('wordInput');
   const word = input.value.toUpperCase();
   
@@ -95,6 +104,12 @@ function submitWord() {
 
   if (!canMakeWord(word)) {
     updateMessage("Can't make this word with your current tiles");
+    return;
+  }
+
+  const isValid = await checkWordValidity(word);
+  if (!isValid) {
+    updateMessage("Not a valid word!");
     return;
   }
 
