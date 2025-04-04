@@ -35,9 +35,14 @@ function drawTiles(n = 7) {
   updateMessage(deck.length + " tiles remaining in deck");
 }
 
+function updateTilesRemaining() {
+  document.getElementById('tiles-remaining').textContent = `Tiles in bag: ${deck.length}`;
+}
+
 function renderHand() {
   const handDiv = document.getElementById('hand');
   handDiv.innerHTML = '';
+  updateTilesRemaining();
   hand.forEach((letter, index) => {
     const tile = document.createElement('div');
     tile.className = 'tile';
