@@ -19,10 +19,17 @@ let score = 0;
 
 function shuffleDeck() {
   deck = [];
+  // Create full deck first
+  let fullDeck = [];
   for (let letter in letterBag) {
     for (let i = 0; i < letterBag[letter]; i++) {
-      deck.push(letter);
+      fullDeck.push(letter);
     }
+  }
+  // Take 40 random tiles from the full deck
+  while (deck.length < 40 && fullDeck.length > 0) {
+    const randomIndex = Math.floor(Math.random() * fullDeck.length);
+    deck.push(fullDeck.splice(randomIndex, 1)[0]);
   }
   deck = deck.sort(() => Math.random() - 0.5);
 }
