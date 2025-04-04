@@ -195,7 +195,9 @@ async function submitWord() {
   }
 
   const wordScore = calculateWordScore(word);
+  console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point)`);
   score += wordScore;
+  console.log(`Total score is now: ${score}`);
   document.getElementById('score').textContent = `Score: ${score}`;
   removeUsedLetters(word);
   drawTiles();
