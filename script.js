@@ -209,7 +209,6 @@ async function submitWord() {
 
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
-// document.getElementById('drawTiles').onclick = () => drawTiles();
 document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('giveUp').onclick = () => endGame(true);
 document.getElementById('playAgain').onclick = resetGame;
