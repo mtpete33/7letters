@@ -18,19 +18,15 @@ let score = 0;
 
 function shuffleDeck() {
   remainingLetters = [];
-  // Create full deck first
-  let fullDeck = [];
+  // Create fixed deck with exactly 40 tiles
   for (let letter in letterBag) {
-    for (let i = 0; i < letterBag[letter]; i++) {
-      fullDeck.push(letter);
+    const count = Math.min(letterBag[letter], 2); // Take max 2 of each letter to keep it balanced
+    for (let i = 0; i < count; i++) {
+      remainingLetters.push(letter);
     }
   }
-  // Take 40 random tiles from the full deck
-  while (remainingLetters.length < 40 && fullDeck.length > 0) {
-    const randomIndex = Math.floor(Math.random() * fullDeck.length);
-    remainingLetters.push(fullDeck.splice(randomIndex, 1)[0]);
-  }
-  remainingLetters = remainingLetters.sort(() => Math.random() - 0.5);
+  // Sort alphabetically to ensure consistent order
+  remainingLetters.sort();
 }
 
 function drawTiles(n = 7) {
