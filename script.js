@@ -93,7 +93,6 @@ function resetGame() {
   
   // Re-enable controls
   document.getElementById('playAgain').style.display = 'none';
-  document.getElementById('drawTiles').disabled = false;
   document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
