@@ -39,7 +39,18 @@ function drawTiles(n = 7) {
     hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
   renderHand();
-  // updateMessage(remainingLetters.length + " tiles remaining in bag");
+  checkGameCompletion();
+}
+
+function checkGameCompletion() {
+  if (remainingLetters.length === 0 && hand.length === 0) {
+    const message = `CONGRATULATIONS!!! You've completed the game with a score of ${score}!`;
+    updateMessage(message);
+    // Keep the congratulations message visible
+    document.getElementById('message').style.color = '#008000';
+    document.getElementById('message').style.fontWeight = 'bold';
+    document.getElementById('message').style.fontSize = '1.2em';
+  }
 }
 
 function updateTilesRemaining() {
@@ -134,6 +145,7 @@ async function submitWord() {
   drawTiles();
   input.value = '';
   updateMessage(`+${wordScore} points!`);
+  checkGameCompletion();
 
   document.getElementById('wordInput').focus();
 }
