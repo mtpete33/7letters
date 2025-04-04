@@ -34,10 +34,17 @@ function shuffleDeck() {
 }
 
 function drawTiles(n = 7) {
-  while (hand.length < n && remainingLetters.length > 0) {
+  const availableSpaces = n - hand.length;
+  const tilesToDraw = Math.min(availableSpaces, remainingLetters.length);
+  
+  for (let i = 0; i < tilesToDraw; i++) {
     const randomIndex = Math.floor(Math.random() * remainingLetters.length);
     hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
+  
+  // Remove any undefined or empty tiles
+  hand = hand.filter(tile => tile);
+  
   renderHand();
   checkGameCompletion();
 }
