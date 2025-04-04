@@ -113,7 +113,7 @@ async function checkWordValidity(word) {
   try {
     const response = await fetch(`https://wordsapiv1.p.rapidapi.com/words/${word.toLowerCase()}`, {
       headers: {
-        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Key': 'e55d7008f0mshe64c2784ad0807ep11de47jsndc04b7c2e65b',
         'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
       }
     });
