@@ -201,8 +201,16 @@ async function submitWord() {
     return;
   }
 
-  const wordScore = calculateWordScore(word);
-  console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point)`);
+  let wordScore = calculateWordScore(word);
+  
+  // Add bonus points for using all 7 tiles
+  if (word.length === 7) {
+    wordScore += 15;
+    console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point + 15 bonus points)`);
+  } else {
+    console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point)`);
+  }
+  
   score += wordScore;
   console.log(`Total score is now: ${score}`);
   document.getElementById('score').textContent = `Score: ${score}`;
