@@ -1,4 +1,3 @@
-
 const letterBag = {
   A: 9, B: 2, C: 2, D: 4, E: 12, F: 2, G: 3, H: 2,
   I: 9, J: 1, K: 1, L: 4, M: 2, N: 6, O: 8, P: 2,
@@ -13,12 +12,12 @@ const letterScores = {
   Y: 4, Z: 10
 };
 
-let deck = [];
+let remainingLetters = [];
 let hand = [];
 let score = 0;
 
 function shuffleDeck() {
-  deck = [];
+  remainingLetters = [];
   // Create full deck first
   let fullDeck = [];
   for (let letter in letterBag) {
@@ -27,23 +26,24 @@ function shuffleDeck() {
     }
   }
   // Take 40 random tiles from the full deck
-  while (deck.length < 40 && fullDeck.length > 0) {
+  while (remainingLetters.length < 40 && fullDeck.length > 0) {
     const randomIndex = Math.floor(Math.random() * fullDeck.length);
-    deck.push(fullDeck.splice(randomIndex, 1)[0]);
+    remainingLetters.push(fullDeck.splice(randomIndex, 1)[0]);
   }
-  deck = deck.sort(() => Math.random() - 0.5);
+  remainingLetters = remainingLetters.sort(() => Math.random() - 0.5);
 }
 
 function drawTiles(n = 7) {
-  while (hand.length < n && deck.length > 0) {
-    hand.push(deck.pop());
+  while (hand.length < n && remainingLetters.length > 0) {
+    const randomIndex = Math.floor(Math.random() * remainingLetters.length);
+    hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
   renderHand();
-  updateMessage(deck.length + " tiles remaining in deck");
+  updateMessage(remainingLetters.length + " tiles remaining in bag");
 }
 
 function updateTilesRemaining() {
-  document.getElementById('tiles-remaining').textContent = `Tiles in bag: ${deck.length}`;
+  document.getElementById('tiles-remaining').textContent = `Tiles in bag: ${remainingLetters.length}`;
 }
 
 function renderHand() {
@@ -85,6 +85,8 @@ function removeUsedLetters(word) {
 function discardSelected() {
   const selectedTiles = document.querySelectorAll('.tile.selected');
   selectedTiles.forEach(tile => {
+    const letter = hand[tile.dataset.index];
+    remainingLetters.push(letter); // Add discarded letter back to bag
     hand.splice(tile.dataset.index, 1);
   });
   drawTiles();
@@ -108,7 +110,7 @@ async function checkWordValidity(word) {
 async function submitWord() {
   const input = document.getElementById('wordInput');
   const word = input.value.toUpperCase();
-  
+
   if (word.length < 2) {
     updateMessage("Word must be at least 2 letters long");
     return;
