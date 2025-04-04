@@ -1,3 +1,4 @@
+
 const letterBag = {
   A: 9, B: 2, C: 2, D: 4, E: 12, F: 2, G: 3, H: 2,
   I: 9, J: 1, K: 1, L: 4, M: 2, N: 6, O: 8, P: 2,
@@ -5,11 +6,19 @@ const letterBag = {
   Y: 2, Z: 1
 };
 
+const letterScores = {
+  A: 1, B: 3, C: 3, D: 2, E: 1, F: 4, G: 2, H: 4,
+  I: 1, J: 8, K: 5, L: 1, M: 3, N: 1, O: 1, P: 3,
+  Q: 10, R: 1, S: 1, T: 1, U: 1, V: 4, W: 4, X: 8,
+  Y: 4, Z: 10
+};
+
 let deck = [];
 let hand = [];
 let score = 0;
 
 function shuffleDeck() {
+  deck = [];
   for (let letter in letterBag) {
     for (let i = 0; i < letterBag[letter]; i++) {
       deck.push(letter);
@@ -23,6 +32,7 @@ function drawTiles(n = 7) {
     hand.push(deck.pop());
   }
   renderHand();
+  updateMessage(deck.length + " tiles remaining in deck");
 }
 
 function renderHand() {
@@ -38,31 +48,73 @@ function renderHand() {
   });
 }
 
-function submitWord() {
-  const input = document.getElementById('wordInput').value.toUpperCase();
-  if (isValidWord(input)) {
-    // TODO: check if word is possible with current hand
-    // For now, assume valid and score it
-    score += input.length * 5; // placeholder scoring
-    document.getElementById('score').textContent = `Score: ${score}`;
-    removeUsedLetters(input);
-    drawTiles();
-  } else {
-    document.getElementById('message').textContent = "Invalid word!";
+function calculateWordScore(word) {
+  return word.split('').reduce((sum, letter) => sum + letterScores[letter], 0);
+}
+
+function canMakeWord(word) {
+  const availableLetters = [...hand];
+  for (let letter of word) {
+    const index = availableLetters.indexOf(letter);
+    if (index === -1) return false;
+    availableLetters.splice(index, 1);
   }
+  return true;
 }
 
 function removeUsedLetters(word) {
-  for (let char of word) {
-    const index = hand.indexOf(char);
+  const lettersToRemove = word.split('');
+  for (let letter of lettersToRemove) {
+    const index = hand.indexOf(letter);
     if (index !== -1) hand.splice(index, 1);
   }
 }
 
-function isValidWord(word) {
-  // Add dictionary check here or use API
-  return word.length >= 2;
+function discardSelected() {
+  const selectedTiles = document.querySelectorAll('.tile.selected');
+  selectedTiles.forEach(tile => {
+    hand.splice(tile.dataset.index, 1);
+  });
+  drawTiles();
 }
 
+function updateMessage(text) {
+  const messageDiv = document.getElementById('message');
+  messageDiv.textContent = text;
+  setTimeout(() => messageDiv.textContent = '', 3000);
+}
+
+function submitWord() {
+  const input = document.getElementById('wordInput');
+  const word = input.value.toUpperCase();
+  
+  if (word.length < 2) {
+    updateMessage("Word must be at least 2 letters long");
+    return;
+  }
+
+  if (!canMakeWord(word)) {
+    updateMessage("Can't make this word with your current tiles");
+    return;
+  }
+
+  const wordScore = calculateWordScore(word);
+  score += wordScore;
+  document.getElementById('score').textContent = `Score: ${score}`;
+  removeUsedLetters(word);
+  drawTiles();
+  input.value = '';
+  updateMessage(`+${wordScore} points!`);
+}
+
+// Initialize game
 document.getElementById('submitWord').onclick = submitWord;
 document.getElementById('drawTiles').onclick = () => drawTiles();
+document.getElementById('discardTiles').onclick = discardSelected;
+document.getElementById('wordInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') submitWord();
+});
+
+// Start game
+shuffleDeck();
+drawTiles();
