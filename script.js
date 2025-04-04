@@ -45,14 +45,45 @@ function drawTiles(n = 7) {
   checkGameCompletion();
 }
 
+function saveGameScore(endType) {
+  const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const gameResult = {
+    score,
+    tilesLeft: hand.length + remainingLetters.length,
+    date: new Date().toLocaleDateString(),
+    endType
+  };
+  previousScores.unshift(gameResult);
+  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 5)));
+  displayPreviousScores();
+}
+
+function displayPreviousScores() {
+  const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const scoresList = document.getElementById('scores-list');
+  scoresList.innerHTML = scores.map(game => {
+    const endMessage = game.endType === 'solitaire' ? 'Solitaire!' : `${game.tilesLeft} tiles left`;
+    return `<li>Score: ${game.score} (${endMessage}) - ${game.date}</li>`;
+  }).join('');
+}
+
+function endGame(giveUp = false) {
+  const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
+  const message = giveUp ? 
+    `Game Over! Final score: ${score} with ${hand.length + remainingLetters.length} tiles remaining` :
+    `Congratulations! You've completed the game with a score of ${score}!`;
+  
+  updateMessage(message);
+  document.getElementById('message').style.color = endType === 'solitaire' ? '#008000' : '#000000';
+  document.getElementById('message').style.fontWeight = 'bold';
+  document.getElementById('message').style.fontSize = '1.2em';
+  
+  saveGameScore(endType);
+}
+
 function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
-    const message = `Congratulations! You've completed the game with a score of ${score}!`;
-    updateMessage(message);
-    // Keep the congratulations message visible
-    document.getElementById('message').style.color = '#008000';
-    document.getElementById('message').style.fontWeight = 'bold';
-    document.getElementById('message').style.fontSize = '1.2em';
+    endGame(false);
   }
 }
 
@@ -156,6 +187,7 @@ async function submitWord() {
 document.getElementById('submitWord').onclick = submitWord;
 document.getElementById('drawTiles').onclick = () => drawTiles();
 document.getElementById('newHand').onclick = getNewHand;
+document.getElementById('giveUp').onclick = () => endGame(true);
 document.getElementById('wordInput').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
 });
@@ -164,3 +196,4 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 shuffleDeck();
 drawTiles();
 document.getElementById('wordInput').focus();
+displayPreviousScores();
