@@ -79,7 +79,9 @@ function endGame(giveUp = false) {
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordInput').disabled = true;
   
-  saveGameScore(endType);
+  if (giveUp || endType === 'solitaire') {
+    saveGameScore(endType);
+  }
 }
 
 function resetGame() {
