@@ -41,12 +41,12 @@ button:hover {
   transform: translateY(-2px);
 }
 
-#discardTiles {
-  background-color: #f44336;
+#newHand {
+  background-color: #ff9800;
 }
 
-#discardTiles:hover {
-  background-color: #da190b;
+#newHand:hover {
+  background-color: #f57c00;
 }
 
 #drawTiles {

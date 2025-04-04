@@ -96,14 +96,12 @@ function removeUsedLetters(word) {
   }
 }
 
-function discardSelected() {
-  const selectedTiles = document.querySelectorAll('.tile.selected');
-  selectedTiles.forEach(tile => {
-    const letter = hand[tile.dataset.index];
-    remainingLetters.push(letter); // Add discarded letter back to bag
-    hand.splice(tile.dataset.index, 1);
-  });
-  drawTiles();
+function getNewHand() {
+  // Return current hand to the bag
+  remainingLetters.push(...hand);
+  hand = [];
+  // Draw new hand of 7 tiles
+  drawTiles(7);
 }
 
 function updateMessage(text) {
@@ -157,7 +155,7 @@ async function submitWord() {
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
 document.getElementById('drawTiles').onclick = () => drawTiles();
-document.getElementById('discardTiles').onclick = discardSelected;
+document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('wordInput').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
 });
