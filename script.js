@@ -11,9 +11,9 @@ let score = 0;
 
 function shuffleDeck() {
   remainingLetters = [];
-  // Create fixed deck with exactly 40 tiles
+  // Create deck using all tiles from letterBag
   for (let letter in letterBag) {
-    const count = Math.min(letterBag[letter], 2); // Take max 2 of each letter to keep it balanced
+    const count = letterBag[letter];
     for (let i = 0; i < count; i++) {
       remainingLetters.push(letter);
     }
