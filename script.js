@@ -73,7 +73,6 @@ function endGame(giveUp = false) {
   
   // Show Play Again button and disable other game controls
   document.getElementById('playAgain').style.display = 'inline-block';
-  document.getElementById('drawTiles').disabled = true;
   document.getElementById('newHand').disabled = true;
   document.getElementById('giveUp').disabled = true;
   document.getElementById('submitWord').disabled = true;
