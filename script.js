@@ -78,7 +78,37 @@ function endGame(giveUp = false) {
   document.getElementById('message').style.fontWeight = 'bold';
   document.getElementById('message').style.fontSize = '1.2em';
   
+  // Show Play Again button and disable other game controls
+  document.getElementById('playAgain').style.display = 'inline-block';
+  document.getElementById('drawTiles').disabled = true;
+  document.getElementById('newHand').disabled = true;
+  document.getElementById('giveUp').disabled = true;
+  document.getElementById('submitWord').disabled = true;
+  document.getElementById('wordInput').disabled = true;
+  
   saveGameScore(endType);
+}
+
+function resetGame() {
+  // Reset game state
+  score = 0;
+  hand = [];
+  document.getElementById('score').textContent = 'Score: 0';
+  document.getElementById('message').textContent = '';
+  document.getElementById('wordInput').value = '';
+  
+  // Re-enable controls
+  document.getElementById('playAgain').style.display = 'none';
+  document.getElementById('drawTiles').disabled = false;
+  document.getElementById('newHand').disabled = false;
+  document.getElementById('giveUp').disabled = false;
+  document.getElementById('submitWord').disabled = false;
+  document.getElementById('wordInput').disabled = false;
+  
+  // Start new game
+  shuffleDeck();
+  drawTiles();
+  document.getElementById('wordInput').focus();
 }
 
 function checkGameCompletion() {
@@ -188,6 +218,7 @@ document.getElementById('submitWord').onclick = submitWord;
 document.getElementById('drawTiles').onclick = () => drawTiles();
 document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('giveUp').onclick = () => endGame(true);
+document.getElementById('playAgain').onclick = resetGame;
 document.getElementById('wordInput').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
 });

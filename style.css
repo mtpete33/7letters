@@ -78,6 +78,14 @@ button:hover {
   border-bottom: 1px solid #eee;
 }
 
+#playAgain {
+  background-color: #4CAF50;
+}
+
+#playAgain:hover {
+  background-color: #45a049;
+}
+
 #drawTiles {
   background-color: #2196F3;
 }
