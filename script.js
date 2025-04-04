@@ -165,6 +165,13 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
+  // Common words that might not be in the API
+  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH']);
+  
+  if (commonWords.has(word)) {
+    return true;
+  }
+  
   try {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
     return response.ok;
