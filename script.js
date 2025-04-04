@@ -111,14 +111,13 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   try {
-    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.log(`API Error for word "${word}":`, errorData);
-      updateMessage(`API Error: ${errorData.message || 'Unknown error'}`);
-      return false;
-    }
-    return true;
+    const response = await fetch(`https://wordsapiv1.p.rapidapi.com/words/${word.toLowerCase()}`, {
+      headers: {
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+      }
+    });
+    return response.ok;
   } catch (error) {
     console.log(`Error checking word "${word}":`, error);
     return false;
