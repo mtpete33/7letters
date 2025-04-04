@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <title>Word Solitaire</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  Hello world
+  <h1>Word Solitaire</h1>
+  <div id="hand" class="tile-container"></div>
+
+  <input type="text" id="wordInput" placeholder="Enter word here" />
+  <button id="submitWord">Submit Word</button>
+
+  <div>
+    <button id="drawTiles">Draw Tiles</button>
+    <button id="discardTiles">Discard Selected</button>
+  </div>
+
+  <div id="score">Score: 0</div>
+  <div id="message"></div>
+
   <script src="script.js"></script>
 </body>
-
 </html>
