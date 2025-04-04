@@ -1,6 +1,6 @@
 const letterBag = {
-  A: 5, B: 1, C: 1, D: 2, E: 7, F: 1, G: 1, H: 1,
-  I: 5, J: 1, K: 1, L: 2, M: 1, N: 3, O: 5, P: 1,
+  A: 6, B: 1, C: 1, D: 2, E: 7, F: 1, G: 1, H: 1,
+  I: 6, J: 1, K: 1, L: 2, M: 1, N: 3, O: 6, P: 1,
   Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
   Y: 1, Z: 1
 };
@@ -47,7 +47,7 @@ function drawTiles(n = 7) {
 
 function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
-    const message = `CONGRATULATIONS!!! You've completed the game with a score of ${score}!`;
+    const message = `Congratulations! You've completed the game with a score of ${score}!`;
     updateMessage(message);
     // Keep the congratulations message visible
     document.getElementById('message').style.color = '#008000';
