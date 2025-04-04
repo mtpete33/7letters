@@ -125,6 +125,8 @@ async function submitWord() {
   drawTiles();
   input.value = '';
   updateMessage(`+${wordScore} points!`);
+
+  document.getElementById('wordInput').focus();
 }
 
 // Initialize game
@@ -138,3 +140,4 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 // Start game
 shuffleDeck();
 drawTiles();
+document.getElementById('wordInput').focus();
