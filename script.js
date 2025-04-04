@@ -39,7 +39,7 @@ function drawTiles(n = 7) {
     hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
   renderHand();
-  updateMessage(remainingLetters.length + " tiles remaining in bag");
+  // updateMessage(remainingLetters.length + " tiles remaining in bag");
 }
 
 function updateTilesRemaining() {
