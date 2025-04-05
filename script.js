@@ -113,7 +113,7 @@ function resetGame() {
   document.getElementById('newHand').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
   document.getElementById('submitWord').style.display = 'inline-block';
-  document.getElementById('newHand').disabled = false;
+  document.getElementById('newHand').disabled = true;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
   document.getElementById('wordInput').disabled = false;
@@ -260,6 +260,7 @@ async function submitWord() {
   removeUsedLetters(word);
   drawTiles();
   input.value = '';
+  document.getElementById('newHand').disabled = false;
   checkGameCompletion();
 
   document.getElementById('wordInput').focus();
