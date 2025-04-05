@@ -211,6 +211,7 @@ async function submitWord() {
   const isValid = await checkWordValidity(word);
   if (!isValid) {
     updateMessage("Not a valid word!");
+    input.value = '';
     return;
   }
 
@@ -221,7 +222,6 @@ async function submitWord() {
   removeUsedLetters(word);
   drawTiles();
   input.value = '';
-  updateMessage(`+${wordScore} points!`);
   checkGameCompletion();
 
   document.getElementById('wordInput').focus();
