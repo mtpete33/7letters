@@ -166,12 +166,20 @@ input[type="text"] {
   background: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 10px;
-  min-width: 30px;
+  padding: 8px;
+  min-width: 24px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   touch-action: manipulation;
   user-select: none;
+}
+
+@media (max-width: 360px) {
+  .key {
+    padding: 6px;
+    min-width: 20px;
+    font-size: 14px;
+  }
 }
 
 .key:active {
