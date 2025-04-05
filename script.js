@@ -198,7 +198,7 @@ async function checkWordValidity(word) {
   }
 
   // Common words that might not be in the API
-  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU']);
+  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU', 'TOW']);
   
   if (commonWords.has(word)) {
     return true;
@@ -236,6 +236,7 @@ async function submitWord() {
       updateMessage("Not a valid word!");
     }
     input.value = '';
+    input.focus();
     return;
   }
 
