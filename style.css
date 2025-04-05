@@ -112,8 +112,13 @@ input[type="text"] {
 #score {
   margin: 10px;
   display: block;
-  /* align-items: center;
-  justify-content: center; */
+}
+
+#progress {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 

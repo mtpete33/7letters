@@ -137,7 +137,8 @@ function renderHand() {
 
 function updateProgress() {
   const progressPercent = (usedTiles / totalTiles) * 100;
-  document.getElementById('score').innerHTML = `Score: ${score} points <div class="progress-bar"><div class="progress" style="width: ${progressPercent}%"></div></div> ${Math.round(progressPercent)}%`;
+  document.getElementById('score').textContent = `Score: ${score} points`;
+  document.getElementById('progress').innerHTML = `<div class="progress-bar"><div class="progress" style="width: ${progressPercent}%"></div></div> ${Math.round(progressPercent)}%`;
 }
 
 function canMakeWord(word) {
