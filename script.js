@@ -267,3 +267,4 @@ shuffleDeck();
 drawTiles();
 document.getElementById('wordInput').focus();
 displayPreviousScores();
+document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
