@@ -69,9 +69,16 @@ function displayPreviousScores() {
 function endGame(giveUp = false) {
   const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+  
+  // Add bonus points for using all tiles
+  if (!giveUp && endType === 'solitaire') {
+    score += 15;
+    updateProgress();
+  }
+  
   const message = giveUp ? 
     `Game Over! You used ${progressPercent}% of available tiles` :
-    `Congratulations! You've completed the game using ${progressPercent}% of tiles!`;
+    `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' (+15 bonus points!)' : ''}`;
   
   updateMessage(message);
   document.getElementById('message').style.color = endType === 'solitaire' ? '#008000' : '#000000';
