@@ -108,8 +108,11 @@ function resetGame() {
   document.getElementById('wordInput').value = '';
   document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
   
-  // Re-enable controls
+  // Re-enable and show all controls
   document.getElementById('playAgain').style.display = 'none';
+  document.getElementById('newHand').style.display = 'inline-block';
+  document.getElementById('giveUp').style.display = 'inline-block';
+  document.getElementById('submitWord').style.display = 'inline-block';
   document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
