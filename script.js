@@ -271,6 +271,7 @@ document.getElementById('submitWord').onclick = submitWord;
 document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('giveUp').onclick = () => endGame(true);
 document.getElementById('playAgain').onclick = resetGame;
+document.getElementById('newHand').disabled = true;
 const wordInput = document.getElementById('wordInput');
 wordInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
