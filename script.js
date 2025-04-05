@@ -94,9 +94,11 @@ function resetGame() {
   // Reset game state
   score = 0;
   hand = [];
+  usedTiles = 0;
   document.getElementById('score').textContent = 'Score: 0';
   document.getElementById('message').textContent = '';
   document.getElementById('wordInput').value = '';
+  document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
   
   // Re-enable controls
   document.getElementById('playAgain').style.display = 'none';
