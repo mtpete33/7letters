@@ -89,6 +89,7 @@ function endGame(giveUp = false) {
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
   document.getElementById('giveUp').style.display = 'none';
+  document.getElementById('submitWord').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordInput').disabled = true;
   
@@ -187,7 +188,7 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI']);
   
   if (invalidWords.has(word)) {
     return false;
