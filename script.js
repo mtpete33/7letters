@@ -229,7 +229,6 @@ async function submitWord() {
     if (word === "QUONE") {
       const messageDiv = document.getElementById('message');
       messageDiv.innerHTML = `Not a valid word!<br><img src="images/quone.jpg" alt="QUONE" style="max-width: 300px; margin-top: 10px;">`;
-      setTimeout(() => messageDiv.innerHTML = '', 5000);
     } else {
       updateMessage("Not a valid word!");
     }
