@@ -1,5 +1,5 @@
 const letterBag = {
-  A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
+  A: 3, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
   I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
   Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
   Y: 1, Z: 1
@@ -188,7 +188,7 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV']);
   
   if (invalidWords.has(word)) {
     return false;
