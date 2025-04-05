@@ -7,9 +7,13 @@ const letterBag = {
 
 let remainingLetters = [];
 let hand = [];
-let score = 0;
+let totalTiles = 0;
+let usedTiles = 0;
 
 function shuffleDeck() {
+  // Calculate total tiles
+  totalTiles = Object.values(letterBag).reduce((sum, count) => sum + count, 0);
+  usedTiles = 0;
   remainingLetters = [];
   // Create deck using all tiles from letterBag
   for (let letter in letterBag) {
@@ -62,9 +66,10 @@ function displayPreviousScores() {
 
 function endGame(giveUp = false) {
   const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
+  const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   const message = giveUp ? 
-    `Game Over! Final score: ${score} with ${hand.length + remainingLetters.length} tiles remaining` :
-    `Congratulations! You've completed the game with a score of ${score}!`;
+    `Game Over! You used ${progressPercent}% of available tiles` :
+    `Congratulations! You've completed the game using ${progressPercent}% of tiles!`;
   
   updateMessage(message);
   document.getElementById('message').style.color = endType === 'solitaire' ? '#008000' : '#000000';
@@ -128,8 +133,9 @@ function renderHand() {
   });
 }
 
-function calculateWordScore(word) {
-  return 1 + word.length; // 1 point for successful word + points for word length
+function updateProgress() {
+  const progressPercent = (usedTiles / totalTiles) * 100;
+  document.getElementById('score').innerHTML = `Progress: <div class="progress-bar"><div class="progress" style="width: ${progressPercent}%"></div></div> ${Math.round(progressPercent)}%`;
 }
 
 function canMakeWord(word) {
@@ -208,19 +214,10 @@ async function submitWord() {
     return;
   }
 
-  let wordScore = calculateWordScore(word);
-  
-  // Add bonus points for using all 7 tiles
-  if (word.length === 7) {
-    wordScore += 15;
-    console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point + 15 bonus points)`);
-  } else {
-    console.log(`Word "${word}" score: ${wordScore} (${word.length} letters + 1 base point)`);
-  }
-  
-  score += wordScore;
-  console.log(`Total score is now: ${score}`);
-  document.getElementById('score').textContent = `Score: ${score}`;
+  usedTiles += word.length;
+  console.log(`Word "${word}" used ${word.length} tiles`);
+  console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
+  updateProgress();
   removeUsedLetters(word);
   drawTiles();
   input.value = '';

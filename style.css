@@ -108,3 +108,25 @@ input[type="text"] {
   border-color: #666;
   transform: scale(0.95);
 }
+
+#score {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 20px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #4CAF50;
+  transition: width 0.3s ease;
+}
