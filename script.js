@@ -9,6 +9,7 @@ let remainingLetters = [];
 let hand = [];
 let totalTiles = 0;
 let usedTiles = 0;
+let score = 0;
 
 function shuffleDeck() {
   // Calculate total tiles
@@ -46,7 +47,7 @@ function saveGameScore(endType) {
   const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   const gameResult = {
-    progressPercent,
+    score,
     tilesLeft: hand.length + remainingLetters.length,
     date: new Date().toLocaleDateString(),
     endType
@@ -61,7 +62,7 @@ function displayPreviousScores() {
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = scores.map(game => {
     const endMessage = game.endType === 'solitaire' ? 'Solitaire!' : `${game.tilesLeft} tiles left`;
-    return `<li>${game.progressPercent}% (${endMessage}) - ${game.date}</li>`;
+    return `<li>${game.score} points (${endMessage}) - ${game.date}</li>`;
   }).join('');
 }
 
@@ -136,7 +137,7 @@ function renderHand() {
 
 function updateProgress() {
   const progressPercent = (usedTiles / totalTiles) * 100;
-  document.getElementById('score').innerHTML = `Progress: <div class="progress-bar"><div class="progress" style="width: ${progressPercent}%"></div></div> ${Math.round(progressPercent)}%`;
+  document.getElementById('score').innerHTML = `Score: ${score} points <div class="progress-bar"><div class="progress" style="width: ${progressPercent}%"></div></div> ${Math.round(progressPercent)}%`;
 }
 
 function canMakeWord(word) {
@@ -161,6 +162,9 @@ function getNewHand() {
   // Return current hand to the bag
   remainingLetters.push(...hand);
   hand = [];
+  // Subtract 1 point for new hand
+  score = Math.max(0, score - 1);
+  updateProgress();
   // Draw new hand of 7 tiles
   drawTiles(7);
 }
@@ -217,6 +221,14 @@ async function submitWord() {
   }
 
   usedTiles += word.length;
+  // Calculate score based on word length
+  if (word.length === 7) {
+    score += 15;
+  } else if (word.length >= 5) {
+    score += word.length;
+  } else {
+    score += 1;
+  }
   console.log(`Word "${word}" used ${word.length} tiles`);
   console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
   updateProgress();
