@@ -61,7 +61,7 @@ function displayPreviousScores() {
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = scores.map(game => {
     const endMessage = game.endType === 'solitaire' ? 'Solitaire!' : `${game.tilesLeft} tiles left`;
-    return `<li>Progress: ${game.progressPercent}% (${endMessage}) - ${game.date}</li>`;
+    return `<li>${game.progressPercent}% (${endMessage}) - ${game.date}</li>`;
   }).join('');
 }
 
@@ -129,7 +129,7 @@ function renderHand() {
     tile.className = 'tile';
     tile.textContent = letter;
     tile.dataset.index = index;
-    tile.onclick = () => tile.classList.toggle('selected');
+    // tile.onclick = () => tile.classList.toggle('selected');
     handDiv.appendChild(tile);
   });
 }
@@ -180,7 +180,7 @@ async function checkWordValidity(word) {
   }
 
   // Common words that might not be in the API
-  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH']);
+  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU']);
   
   if (commonWords.has(word)) {
     return true;
