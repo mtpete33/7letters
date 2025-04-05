@@ -267,8 +267,34 @@ async function submitWord() {
   document.getElementById('wordInput').focus();
 }
 
+// Virtual Keyboard
+function createVirtualKeyboard() {
+  const keyboard = document.querySelector('.virtual-keyboard');
+  const letters = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
+  
+  letters.forEach(letter => {
+    const key = document.createElement('div');
+    key.className = 'key';
+    key.textContent = letter;
+    key.onclick = () => {
+      const input = document.getElementById('wordInput');
+      input.value += letter;
+      input.focus();
+    };
+    keyboard.appendChild(key);
+  });
+}
+
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
+createVirtualKeyboard();
+
+// Prevent mobile keyboard
+document.getElementById('wordInput').addEventListener('focus', (e) => {
+  if (window.innerWidth <= 768) {
+    e.target.blur();
+  }
+});
 document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('giveUp').onclick = () => endGame(true);
 document.getElementById('playAgain').onclick = resetGame;
