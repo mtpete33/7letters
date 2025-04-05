@@ -174,11 +174,19 @@ input[type="text"] {
   user-select: none;
 }
 
+@media (max-width: 768px) {
+  .key {
+    padding: 4px;
+    min-width: 18px;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 360px) {
   .key {
-    padding: 6px;
-    min-width: 20px;
-    font-size: 14px;
+    padding: 3px;
+    min-width: 16px;
+    font-size: 12px;
   }
 }
 
