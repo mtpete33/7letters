@@ -44,8 +44,9 @@ function drawTiles(n = 7) {
 
 function saveGameScore(endType) {
   const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   const gameResult = {
-    score,
+    progressPercent,
     tilesLeft: hand.length + remainingLetters.length,
     date: new Date().toLocaleDateString(),
     endType
@@ -60,7 +61,7 @@ function displayPreviousScores() {
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = scores.map(game => {
     const endMessage = game.endType === 'solitaire' ? 'Solitaire!' : `${game.tilesLeft} tiles left`;
-    return `<li>Score: ${game.score} (${endMessage}) - ${game.date}</li>`;
+    return `<li>Progress: ${game.progressPercent}% (${endMessage}) - ${game.date}</li>`;
   }).join('');
 }
 
