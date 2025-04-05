@@ -180,7 +180,7 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN']);
   
   if (invalidWords.has(word)) {
     return false;
@@ -228,11 +228,11 @@ async function submitWord() {
   if (word.length === 7) {
     score += 15;
   } else if (word.length === 6) {
-    score += 6;
+    score += 8;
   } else if (word.length === 5) {
-    score += 5;
+    score += 7;
   } else if (word.length === 4) {
-    score += 4;
+    score += 5;
   } else if (word.length === 3) {
     score += 3;
   } else if (word.length === 2) {
