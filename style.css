@@ -103,6 +103,12 @@ input[type="text"] {
   width: 200px;
 }
 
+@media (max-width: 768px) {
+  input[type="text"] {
+    text-align: center;
+  }
+}
+
 .tile.selected {
   background: #e0e0e0;
   border-color: #666;
