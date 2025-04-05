@@ -224,10 +224,16 @@ async function submitWord() {
   // Calculate score based on word length
   if (word.length === 7) {
     score += 15;
-  } else if (word.length >= 5) {
-    score += word.length;
-  } else {
-    score += 1;
+  } else if (word.length === 6) {
+    score += 6;
+  } else if (word.length === 5) {
+    score += 5;
+  } else if (word.length === 4) {
+    score += 4;
+  } else if (word.length === 3) {
+    score += 3;
+  } else if (word.length === 2) {
+    score += 2;
   }
   console.log(`Word "${word}" used ${word.length} tiles`);
   console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
