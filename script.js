@@ -85,10 +85,10 @@ function endGame(giveUp = false) {
   document.getElementById('message').style.fontWeight = 'bold';
   document.getElementById('message').style.fontSize = '1.2em';
   
-  // Show Play Again button and disable other game controls
+  // Show Play Again button and hide/disable other game controls
   document.getElementById('playAgain').style.display = 'inline-block';
-  document.getElementById('newHand').disabled = true;
-  document.getElementById('giveUp').disabled = true;
+  document.getElementById('newHand').style.display = 'none';
+  document.getElementById('giveUp').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordInput').disabled = true;
   
