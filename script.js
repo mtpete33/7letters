@@ -270,18 +270,29 @@ async function submitWord() {
 // Virtual Keyboard
 function createVirtualKeyboard() {
   const keyboard = document.querySelector('.virtual-keyboard');
-  const letters = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
+  const rows = [
+    'QWERTYUIOP'.split(''),
+    'ASDFGHJKL'.split(''),
+    'ZXCVBNM'.split('')
+  ];
   
-  letters.forEach(letter => {
-    const key = document.createElement('div');
-    key.className = 'key';
-    key.textContent = letter;
-    key.onclick = () => {
-      const input = document.getElementById('wordInput');
-      input.value += letter;
-      input.focus();
-    };
-    keyboard.appendChild(key);
+  rows.forEach(row => {
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'keyboard-row';
+    
+    row.forEach(letter => {
+      const key = document.createElement('div');
+      key.className = 'key';
+      key.textContent = letter;
+      key.onclick = () => {
+        const input = document.getElementById('wordInput');
+        input.value += letter;
+        input.focus();
+      };
+      rowDiv.appendChild(key);
+    });
+    
+    keyboard.appendChild(rowDiv);
   });
 }
 

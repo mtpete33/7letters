@@ -149,10 +149,17 @@ input[type="text"] {
   background: #f0f0f0;
   padding: 5px;
   display: none;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2px;
   z-index: 1000;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
 }
 
 .key {
