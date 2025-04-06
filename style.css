@@ -59,6 +59,12 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+#message.fade-out {
+  opacity: 0;
 }
 
 #newHand {

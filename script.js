@@ -198,8 +198,12 @@ function getNewHand() {
 
 function updateMessage(text) {
   const messageDiv = document.getElementById('message');
+  messageDiv.classList.remove('fade-out');
   messageDiv.textContent = text;
-  setTimeout(() => messageDiv.textContent = '', 4000);
+  setTimeout(() => {
+    messageDiv.classList.add('fade-out');
+    setTimeout(() => messageDiv.textContent = '', 1000);
+  }, 3000);
 }
 
 async function checkWordValidity(word) {
