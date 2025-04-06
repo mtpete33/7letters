@@ -283,7 +283,7 @@ async function submitWord() {
   const messageDiv = document.getElementById('message');
   messageDiv.classList.remove('fade-out');
   messageDiv.style.color = '#4CAF50';
-  messageDiv.textContent = `${word} ${points}pts!`;
+  messageDiv.innerHTML = `${word}<br>${points}pts!`;
   setTimeout(() => {
     messageDiv.classList.add('fade-out');
     setTimeout(() => {
