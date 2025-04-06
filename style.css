@@ -122,6 +122,23 @@ input[type="text"] {
   border-radius: 5px;
   margin: 10px;
   width: 200px;
+  caret-color: transparent;
+}
+
+#clearInput {
+  padding: 10px 20px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #666;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+#clearInput:hover {
+  background-color: #555;
 }
 
 @media (max-width: 768px) {

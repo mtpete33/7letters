@@ -296,6 +296,12 @@ wordInput.addEventListener('input', (e) => {
   e.target.value = e.target.value.toUpperCase();
 });
 
+// Clear input button
+document.getElementById('clearInput').onclick = () => {
+  document.getElementById('wordInput').value = '';
+  document.getElementById('wordInput').focus();
+};
+
 // Start game
 shuffleDeck();
 drawTiles();
