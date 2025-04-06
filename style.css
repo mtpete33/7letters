@@ -176,6 +176,7 @@ input[type="text"] {
 
 .key:active {
   background: #e0e0e0;
+}
 
 @media (max-width: 768px) {
   .key {
