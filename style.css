@@ -37,7 +37,7 @@ h1 {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   margin: 10px 5px;
   font-size: 16px;
   border: none;
@@ -55,7 +55,7 @@ button:hover {
 
 #message {
   min-height: 60px;
-  margin: 15px 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,11 +69,13 @@ button:hover {
 }
 
 #newHand {
-  background-color: #ff9800;
+  /* background-color: #ff9800; */
+  background-color: #00adff;
+  
 }
 
 #newHand:hover {
-  background-color: #f57c00;
+  background-color: #0d75c5;
 }
 
 #giveUp {
@@ -84,8 +86,8 @@ button:hover {
   background-color: #d32f2f;
 }
 
-#submitWord {
-  margin-top: 21px;
+#hand {
+  margin-bottom: 20px;
 }
 
 #previous-scores {
@@ -135,11 +137,12 @@ button:hover {
 }
 
 input[type="text"] {
+  text-align: center;
   padding: 10px;
   font-size: 20px;
   border: 2px solid #ddd;
   border-radius: 5px;
-  width: 200px;
+  width: 165px;
   caret-color: transparent;
   margin: 0;
 }
@@ -156,17 +159,17 @@ input[type="text"] {
   margin: 0;
 }
 
-#clearInput:hover {
-  background-color: #555;
+#submitWord {
+  margin-left: 0;
+  padding: 10px 10px;
 }
 
-@media (max-width: 768px) {
-  input[type="text"] {
-    text-align: center;
-  }
-  input[type="text"]::placeholder {
-    color: transparent;
-  }
+input[type="text"]::placeholder {
+  color: transparent;
+}
+
+#clearInput:hover {
+  background-color: #555;
 }
 
 .tile.selected {
@@ -176,7 +179,7 @@ input[type="text"] {
 }
 
 #score {
-  margin-top: 25px;
+  margin-top: 35px;
   display: block;
 }
 
@@ -202,11 +205,6 @@ input[type="text"] {
   transition: width 0.3s ease;
 }
 
-@media (max-width: 380px) {
-  .tile-container {
-    gap: 5px;
-  }
-}
 
 .modal {
   display: none;
@@ -240,4 +238,14 @@ input[type="text"] {
 
 #cancelGiveUp {
   background-color: #666;
+}
+
+@media screen and (max-width: 375px) {
+  input[type="text"] {
+    width: 145px;
+  }
+
+  .tile-container {
+    gap: 5px;
+  }
 }
