@@ -77,6 +77,10 @@ button:hover {
   background-color: #d32f2f;
 }
 
+#submitWord {
+  margin-top: 21px;
+}
+
 #previous-scores {
   margin-top: 20px;
   padding: 10px;
@@ -126,7 +130,7 @@ input[type="text"] {
 }
 
 #clearInput {
-  padding: 10px 20px;
+  padding: 10px 8px;
   margin: 10px 0;
   font-size: 16px;
   border: none;
