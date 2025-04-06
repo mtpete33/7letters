@@ -293,13 +293,13 @@ function createVirtualKeyboard() {
     });
 
     // Add Backspace or Submit button based on row
-    if (row[0] === 'Z') {
+    if (row.includes('Z')) {
       const submitBtn = document.createElement('div');
       submitBtn.className = 'key action-key';
       submitBtn.textContent = 'Submit';
       submitBtn.onclick = submitWord;
       rowDiv.insertBefore(submitBtn, rowDiv.firstChild);
-    } else if (row[row.length - 1] === 'M') {
+    } else if (row.includes('M')) {
       const backspaceBtn = document.createElement('div');
       backspaceBtn.className = 'key action-key';
       backspaceBtn.textContent = '⌫';
