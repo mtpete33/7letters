@@ -148,7 +148,7 @@ input[type="text"] {
   width: 100%;
   background: #f0f0f0;
   padding: 5px;
-  display: none;
+  /* display: none; */
   flex-direction: column;
   align-items: center;
   gap: 2px;
@@ -174,25 +174,29 @@ input[type="text"] {
   user-select: none;
 }
 
+.key:active {
+  background: #e0e0e0;
+
 @media (max-width: 768px) {
   .key {
-    padding: 4px;
+    padding: 8.5px;
     min-width: 18px;
+    min-height: 20px;
     font-size: 14px;
   }
 }
 
-@media (max-width: 360px) {
+
+
+@media (max-width: 380px) {
   .key {
-    padding: 3px;
-    min-width: 16px;
-    font-size: 12px;
+      min-width: 17px;
+      min-height: 27px;
+      font-size: 14px;
   }
 }
 
-.key:active {
-  background: #e0e0e0;
-}
+
 
 @media (max-width: 768px) {
   .virtual-keyboard {
