@@ -145,9 +145,17 @@ function renderHand() {
     tile.dataset.index = index;
     tile.onclick = () => {
         const input = document.getElementById('wordInput');
-        input.value += letter;
-        tile.classList.add('selected');
-        setTimeout(() => tile.classList.remove('selected'), 200);
+        const currentWord = input.value;
+        const letterCount = hand.filter(l => l === letter).length;
+        const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
+        
+        if (letterUsedCount < letterCount) {
+            input.value += letter;
+            tile.classList.add('selected');
+            setTimeout(() => tile.classList.remove('selected'), 200);
+        } else {
+            updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
+        }
     };
     handDiv.appendChild(tile);
   });
