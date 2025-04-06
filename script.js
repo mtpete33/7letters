@@ -303,9 +303,28 @@ const wordInput = document.getElementById('wordInput');
 wordInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
 });
-wordInput.addEventListener('input', (e) => {
-  e.target.value = e.target.value.toUpperCase();
-});
+// Only allow keyboard input on non-touch devices
+if (!('ontouchstart' in window)) {
+  wordInput.removeAttribute('readonly');
+  
+  wordInput.addEventListener('keydown', (e) => {
+    if (e.key.length === 1) { // If it's a character key
+      const letter = e.key.toUpperCase();
+      const currentWord = wordInput.value;
+      const letterCount = hand.filter(l => l === letter).length;
+      const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
+      
+      if (letterCount === 0 || letterUsedCount >= letterCount) {
+        e.preventDefault();
+        updateMessage(`Letter "${letter}" is not available in your hand`);
+      }
+    }
+  });
+
+  wordInput.addEventListener('input', (e) => {
+    e.target.value = e.target.value.toUpperCase();
+  });
+}
 
 // Clear input button
 document.getElementById('clearInput').onclick = () => {
