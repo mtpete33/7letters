@@ -110,21 +110,26 @@ button:hover {
 .word-item {
   cursor: pointer;
   position: relative;
+  width: 14em;
+  margin: 0 auto;
+}
+.word-item:hover {
+  background-color: #b3e8ff
 }
 
 .word-tooltip {
   display: none;
   position: absolute;
-  background: #333;
+  background: #333333e6;
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
   z-index: 100;
-  width: 200px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: -30px;
+  width: 120px;
+  left: 4%;
+  transform: translateX(-50%) translateY(-103px);
+  top: 64px;
 }
 
 .word-item:hover .word-tooltip {
