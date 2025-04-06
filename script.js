@@ -143,7 +143,12 @@ function renderHand() {
     tile.className = 'tile';
     tile.textContent = letter;
     tile.dataset.index = index;
-    // tile.onclick = () => tile.classList.toggle('selected');
+    tile.onclick = () => {
+        const input = document.getElementById('wordInput');
+        input.value += letter;
+        tile.classList.add('selected');
+        setTimeout(() => tile.classList.remove('selected'), 200);
+    };
     handDiv.appendChild(tile);
   });
 }
