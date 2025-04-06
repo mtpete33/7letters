@@ -284,7 +284,7 @@ async function submitWord() {
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
 
-document.getElementById('newHand').onclick = getNewHand;
+document.getElementById('newHand').addEventListener('click', getNewHand);
 document.getElementById('giveUp').onclick = () => {
   document.getElementById('confirmModal').style.display = 'block';
 };
