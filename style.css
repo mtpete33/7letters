@@ -207,12 +207,14 @@ input[type="text"] {
 
 @media (max-width: 470px) {
   .key {
-      min-width: 20px;
-
+      min-width: 18px;
   }
   #submitKey {
       font-size: 12px !important;
       line-height: 3;
+  }
+  #backspaceKey {
+      font-size: 26px !important;
   }
 }
 

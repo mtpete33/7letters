@@ -316,6 +316,7 @@ function createVirtualKeyboard() {
     } else if (row.includes('M')) {
       const backspaceBtn = document.createElement('div');
       backspaceBtn.className = 'key action-key';
+      backspaceBtn.id = 'backspaceKey';
       backspaceBtn.textContent = '⌫';
       backspaceBtn.onclick = () => {
         const input = document.getElementById('wordInput');
