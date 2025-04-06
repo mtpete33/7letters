@@ -303,7 +303,10 @@ function createVirtualKeyboard() {
         input.focus();
       };
       rowDiv.appendChild(backspaceBtn);
-    } else if (row.includes('Z')) {
+    }
+    
+    // Add special buttons
+    if (row.includes('Z')) {
       const submitBtn = document.createElement('div');
       submitBtn.className = 'key action-key';
       submitBtn.textContent = 'Submit';
