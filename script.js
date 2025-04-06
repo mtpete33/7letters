@@ -28,7 +28,7 @@ function shuffleDeck() {
 }
 
 function drawTiles(n = 7) {
-  // TEMPORARY: Easter egg test
+  // QUONE test
   if (hand.length === 0) {
     hand = ['Q', 'U', 'O', 'N', 'E'];
     return;
@@ -154,7 +154,7 @@ function renderHand() {
         const currentWord = input.value;
         const letterCount = hand.filter(l => l === letter).length;
         const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
-        
+
         if (letterUsedCount < letterCount) {
             input.value += letter;
             tile.classList.add('selected');
@@ -278,14 +278,14 @@ async function submitWord() {
   } else if (word.length === 2) {
     score += 2;
   }
-  
+
   // Show success message with points earned
   const points = word.length === 7 ? 15 : 
                 word.length === 6 ? 8 : 
                 word.length === 5 ? 7 : 
                 word.length === 4 ? 5 : 
                 word.length === 3 ? 3 : 2;
-                
+
   const messageDiv = document.getElementById('message');
   messageDiv.classList.remove('fade-out');
   messageDiv.style.color = '#4CAF50';
@@ -297,7 +297,7 @@ async function submitWord() {
       messageDiv.style.color = '';
     }, 1000);
   }, 3000);
-  
+
   console.log(`Word "${word}" used ${word.length} tiles`);
   console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
   updateProgress();
@@ -334,14 +334,14 @@ wordInput.addEventListener('keypress', (e) => {
 // Only allow keyboard input on non-touch devices
 if (!('ontouchstart' in window)) {
   wordInput.removeAttribute('readonly');
-  
+
   wordInput.addEventListener('keydown', (e) => {
     if (e.key.length === 1) { // If it's a character key
       const letter = e.key.toUpperCase();
       const currentWord = wordInput.value;
       const letterCount = hand.filter(l => l === letter).length;
       const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
-      
+
       if (letterCount === 0) {
         e.preventDefault();
         updateMessage(`Letter "${letter}" is not available in your hand`);
