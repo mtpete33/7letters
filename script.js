@@ -112,7 +112,7 @@ function resetGame() {
   document.getElementById('playAgain').style.display = 'none';
   document.getElementById('newHand').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
-  document.getElementById('submitWord').style.display = window.innerWidth > 768 ? 'inline-block' : 'none';
+  document.getElementById('submitWord').style.display = 'inline-block';
   document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
