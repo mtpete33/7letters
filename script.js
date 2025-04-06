@@ -286,7 +286,7 @@ async function submitWord() {
   setTimeout(() => {
     messageDiv.style.color = '';
     messageDiv.textContent = '';
-  }, 4000);
+  }, 3000);
   
   console.log(`Word "${word}" used ${word.length} tiles`);
   console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
