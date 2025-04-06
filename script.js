@@ -191,7 +191,7 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX']);
   
   if (invalidWords.has(word)) {
     return false;
@@ -293,31 +293,33 @@ function createVirtualKeyboard() {
     });
 
     // Add Backspace or Submit button based on row
-    if (row.includes('M')) {
-      const backspaceBtn = document.createElement('div');
-      backspaceBtn.className = 'key action-key';
-      backspaceBtn.textContent = '⌫';
-      backspaceBtn.onclick = () => {
-        const input = document.getElementById('wordInput');
-        input.value = input.value.slice(0, -1);
-        input.focus();
-      };
-      rowDiv.appendChild(backspaceBtn);
-    }
+    // if (row.includes('M')) {
+    //   const backspaceBtn = document.createElement('div');
+    //   backspaceBtn.className = 'key action-key';
+    //   backspaceBtn.textContent = '⌫';
+    //   backspaceBtn.onclick = () => {
+    //     const input = document.getElementById('wordInput');
+    //     input.value = input.value.slice(0, -1);
+    //     input.focus();
+    //   };
+    //   rowDiv.appendChild(backspaceBtn);
+    // }
     
     // Add special buttons
     if (row.includes('Z')) {
       const submitBtn = document.createElement('div');
       submitBtn.className = 'key action-key';
       submitBtn.id = 'submitKey';
-      submitBtn.textContent = 'Submit';
+      submitBtn.textContent = 'SUBMIT';
       submitBtn.onclick = submitWord;
       rowDiv.insertBefore(submitBtn, rowDiv.firstChild);
-    } else if (row.includes('M')) {
+    } 
+    if (row.includes('M')) {
       const backspaceBtn = document.createElement('div');
       backspaceBtn.className = 'key action-key';
       backspaceBtn.id = 'backspaceKey';
-      backspaceBtn.textContent = '⌫';
+      // backspaceBtn.textContent = '⌫';
+      backspaceBtn.textContent = 'DEL';
       backspaceBtn.onclick = () => {
         const input = document.getElementById('wordInput');
         input.value = input.value.slice(0, -1);

@@ -146,7 +146,7 @@ input[type="text"] {
 .virtual-keyboard {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: -5px;
   width: 100%;
   background: #f0f0f0;
   padding: 5px;
@@ -189,7 +189,8 @@ input[type="text"] {
 
 @media (max-width: 768px) {
   .key {
-    padding: 8.5px;
+    padding: 7.3px 8.5px 8.3px 8.5px;
+    /* padding: 8.5px; */
     min-width: 18px;
     min-height: 25px;
     font-size: 20px;
@@ -214,7 +215,9 @@ input[type="text"] {
       line-height: 3;
   }
   #backspaceKey {
-      font-size: 26px !important;
+    padding: 5px 3px;
+    line-height: 2.1;
+    font-size: 18px !important
   }
 }
 
