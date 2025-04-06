@@ -203,12 +203,12 @@ function updateMessage(text) {
   setTimeout(() => {
     messageDiv.classList.add('fade-out');
     setTimeout(() => messageDiv.textContent = '', 1000);
-  }, 3000);
+  }, 1000);
 }
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'OU', 'JOOK']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'OU', 'JOOK', 'BRU']);
 
   if (invalidWords.has(word)) {
     return false;
@@ -283,14 +283,14 @@ async function submitWord() {
   const messageDiv = document.getElementById('message');
   messageDiv.classList.remove('fade-out');
   messageDiv.style.color = '#4CAF50';
-  messageDiv.innerHTML = `${word}<br>${points}pts!`;
+  messageDiv.innerHTML = `${word}<br>+${points}pts!`;
   setTimeout(() => {
     messageDiv.classList.add('fade-out');
     setTimeout(() => {
       messageDiv.textContent = '';
       messageDiv.style.color = '';
     }, 1000);
-  }, 3000);
+  }, 1000);
 
   console.log(`Word "${word}" used ${word.length} tiles`);
   console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
@@ -338,7 +338,7 @@ if (!('ontouchstart' in window)) {
 
       if (letterCount === 0) {
         e.preventDefault();
-        updateMessage(`Letter "${letter}" is not available in your hand`);
+        updateMessage(`"${letter}" is not available in your hand`);
       } else if (letterUsedCount >= letterCount) {
         e.preventDefault();
         updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
