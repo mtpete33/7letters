@@ -314,9 +314,12 @@ if (!('ontouchstart' in window)) {
       const letterCount = hand.filter(l => l === letter).length;
       const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
       
-      if (letterCount === 0 || letterUsedCount >= letterCount) {
+      if (letterCount === 0) {
         e.preventDefault();
         updateMessage(`Letter "${letter}" is not available in your hand`);
+      } else if (letterUsedCount >= letterCount) {
+        e.preventDefault();
+        updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
       }
     }
   });
