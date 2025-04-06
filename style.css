@@ -182,18 +182,27 @@ input[type="text"] {
   .key {
     padding: 8.5px;
     min-width: 18px;
-    min-height: 20px;
+    min-height: 25px;
     font-size: 14px;
+    line-height: 1.8;
   }
 }
 
 
+@media (max-width: 470px) {
+  .key {
+      min-width: 20px;
+
+  }
+}
+
 
 @media (max-width: 380px) {
   .key {
-      min-width: 17px;
+      min-width: 15.5px;
       min-height: 27px;
       font-size: 14px;
+      line-height: 1.8;
   }
 }
 
