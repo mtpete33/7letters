@@ -199,7 +199,7 @@ function getNewHand() {
 function updateMessage(text) {
   const messageDiv = document.getElementById('message');
   messageDiv.textContent = text;
-  setTimeout(() => messageDiv.textContent = '', 3000);
+  setTimeout(() => messageDiv.textContent = '', 4000);
 }
 
 async function checkWordValidity(word) {
