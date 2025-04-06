@@ -307,7 +307,7 @@ async function submitWord() {
         console.error("Failed to load QUONE image");
         messageDiv.textContent = "Not a valid word";
       };
-      img.src = "images/quone.jpg";
+      img.src = "images/quone.webp";
       img.alt = "QUONE";
     } else {
       updateMessage("Not a valid word");
