@@ -309,6 +309,7 @@ function createVirtualKeyboard() {
     if (row.includes('Z')) {
       const submitBtn = document.createElement('div');
       submitBtn.className = 'key action-key';
+      submitBtn.id = 'submitKey';
       submitBtn.textContent = 'Submit';
       submitBtn.onclick = submitWord;
       rowDiv.insertBefore(submitBtn, rowDiv.firstChild);

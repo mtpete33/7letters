@@ -193,6 +193,11 @@ input[type="text"] {
     font-size: 14px;
     line-height: 1.8;
   }
+
+  #submitKey {
+    background: linear-gradient(178deg, #1de653, #00ff00);
+  }
+  
 }
 
 
@@ -200,6 +205,9 @@ input[type="text"] {
   .key {
       min-width: 20px;
 
+  }
+  #submitKey {
+      font-size: 12px;
   }
 }
 
