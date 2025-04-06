@@ -291,6 +291,25 @@ function createVirtualKeyboard() {
       };
       rowDiv.appendChild(key);
     });
+
+    // Add Backspace or Submit button based on row
+    if (row[0] === 'Z') {
+      const submitBtn = document.createElement('div');
+      submitBtn.className = 'key action-key';
+      submitBtn.textContent = 'Submit';
+      submitBtn.onclick = submitWord;
+      rowDiv.insertBefore(submitBtn, rowDiv.firstChild);
+    } else if (row[row.length - 1] === 'M') {
+      const backspaceBtn = document.createElement('div');
+      backspaceBtn.className = 'key action-key';
+      backspaceBtn.textContent = '⌫';
+      backspaceBtn.onclick = () => {
+        const input = document.getElementById('wordInput');
+        input.value = input.value.slice(0, -1);
+        input.focus();
+      };
+      rowDiv.appendChild(backspaceBtn);
+    }
     
     keyboard.appendChild(rowDiv);
   });

@@ -178,6 +178,11 @@ input[type="text"] {
   background: #e0e0e0;
 }
 
+.action-key {
+  background: #e8e8e8;
+  min-width: 50px;
+}
+
 @media (max-width: 768px) {
   .key {
     padding: 8.5px;
