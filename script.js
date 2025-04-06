@@ -278,7 +278,7 @@ async function submitWord() {
                 
   const messageDiv = document.getElementById('message');
   messageDiv.style.color = '#4CAF50';
-  messageDiv.textContent = `Nice! "${word}" (${points}pts)!`;
+  messageDiv.textContent = `${word}  +${points}pts!`;
   setTimeout(() => {
     messageDiv.style.color = '';
     messageDiv.textContent = '';
