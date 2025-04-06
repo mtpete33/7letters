@@ -301,13 +301,16 @@ async function submitWord() {
         messageDiv.innerHTML = '';
         img.style.maxWidth = "300px";
         img.style.marginTop = "10px";
+        img.style.display = "block";
         messageDiv.appendChild(img);
       };
-      img.onerror = () => {
-        console.error("Failed to load QUONE image");
-        messageDiv.textContent = "Not a valid word";
+      img.onerror = (e) => {
+        console.error("Failed to load QUONE image:", e);
+        // Try the jpg as fallback
+        img.src = "images/quone.jpg";
       };
-      img.src = "images/quone.webp";
+      // Force image to be treated as an image resource
+      img.src = "./images/quone.webp?" + new Date().getTime();
       img.alt = "QUONE";
     } else {
       updateMessage("Not a valid word");
