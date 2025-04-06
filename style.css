@@ -102,6 +102,11 @@ button:hover {
   margin-right: auto;
 }
 
+#words-list {
+  list-style: none;
+  padding: 0;
+}
+
 .word-item {
   cursor: pointer;
   position: relative;
