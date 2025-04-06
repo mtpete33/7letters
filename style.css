@@ -112,6 +112,8 @@ button:hover {
   position: relative;
   width: 14em;
   margin: 0 auto;
+  height: 1.8em;
+  line-height: 1.8;
 }
 .word-item:hover {
   background-color: #b3e8ff
