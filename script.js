@@ -281,11 +281,15 @@ async function submitWord() {
                 word.length === 3 ? 3 : 2;
                 
   const messageDiv = document.getElementById('message');
+  messageDiv.classList.remove('fade-out');
   messageDiv.style.color = '#4CAF50';
-  messageDiv.textContent = `${word}  +${points}pts!`;
+  messageDiv.textContent = `Nice! "${word}" (${points}pts)!`;
   setTimeout(() => {
-    messageDiv.style.color = '';
-    messageDiv.textContent = '';
+    messageDiv.classList.add('fade-out');
+    setTimeout(() => {
+      messageDiv.textContent = '';
+      messageDiv.style.color = '';
+    }, 1000);
   }, 3000);
   
   console.log(`Word "${word}" used ${word.length} tiles`);
