@@ -5,6 +5,12 @@ const letterBag = {
   Y: 1, Z: 1
 };
 
+// Uncomment for testing QUONE
+// const letterBag = {
+//   E: 2, O: 2, N: 2,
+//   Q: 2, U: 2 
+// };
+
 let remainingLetters = [];
 let hand = [];
 let totalTiles = 0;
@@ -209,7 +215,7 @@ function updateMessage(text) {
 
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP']);
 
   if (invalidWords.has(word)) {
     return false;
