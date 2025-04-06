@@ -60,10 +60,11 @@ button:hover {
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 1s ease-out;
+  transition: none;
 }
 
 #message.fade-out {
+  transition: opacity 1s ease-out;
   opacity: 0;
 }
 
