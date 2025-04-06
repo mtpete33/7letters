@@ -381,17 +381,39 @@ async function submitWord() {
 document.getElementById('submitWord').onclick = submitWord;
 
 document.getElementById('newHand').addEventListener('click', getNewHand);
+function showConfirmModal(title, message, onConfirm) {
+  const modal = document.getElementById('confirmModal');
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalMessage').textContent = message;
+  modal.style.display = 'block';
+  
+  const confirmHandler = () => {
+    modal.style.display = 'none';
+    onConfirm();
+    document.getElementById('modalConfirm').removeEventListener('click', confirmHandler);
+  };
+  
+  document.getElementById('modalConfirm').addEventListener('click', confirmHandler);
+  document.getElementById('modalCancel').onclick = () => {
+    modal.style.display = 'none';
+    document.getElementById('modalConfirm').removeEventListener('click', confirmHandler);
+  };
+}
+
 document.getElementById('giveUp').onclick = () => {
-  document.getElementById('confirmModal').style.display = 'block';
+  showConfirmModal(
+    'Are you sure?',
+    'Do you really want to give up this game?',
+    () => endGame(true)
+  );
 };
 
-document.getElementById('confirmGiveUp').onclick = () => {
-  document.getElementById('confirmModal').style.display = 'none';
-  endGame(true);
-};
-
-document.getElementById('cancelGiveUp').onclick = () => {
-  document.getElementById('confirmModal').style.display = 'none';
+document.getElementById('newHand').onclick = () => {
+  showConfirmModal(
+    'Deal New Hand?',
+    'This will cost 1 point. Are you sure?',
+    getNewHand
+  );
 };
 document.getElementById('playAgain').onclick = resetGame;
 const wordInput = document.getElementById('wordInput');
