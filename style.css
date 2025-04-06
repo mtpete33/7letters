@@ -215,6 +215,7 @@ input[type="text"] {
   }
   #backspaceKey {
       font-size: 26px !important;
+      line-height: 1.2;
   }
 }
 
