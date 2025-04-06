@@ -285,7 +285,18 @@ async function submitWord() {
 document.getElementById('submitWord').onclick = submitWord;
 
 document.getElementById('newHand').onclick = getNewHand;
-document.getElementById('giveUp').onclick = () => endGame(true);
+document.getElementById('giveUp').onclick = () => {
+  document.getElementById('confirmModal').style.display = 'block';
+};
+
+document.getElementById('confirmGiveUp').onclick = () => {
+  document.getElementById('confirmModal').style.display = 'none';
+  endGame(true);
+};
+
+document.getElementById('cancelGiveUp').onclick = () => {
+  document.getElementById('confirmModal').style.display = 'none';
+};
 document.getElementById('playAgain').onclick = resetGame;
 document.getElementById('newHand').disabled = true;
 const wordInput = document.getElementById('wordInput');
