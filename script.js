@@ -295,7 +295,17 @@ async function submitWord() {
   if (!isValid) {
     if (word === "QUONE") {
       const messageDiv = document.getElementById('message');
-      messageDiv.innerHTML = `<img src="images/quone.jpg" alt="QUONE" style="max-width: 300px; margin-top: 10px;">`;
+      const img = new Image();
+      img.src = "images/quone.jpg";
+      img.alt = "QUONE";
+      img.style.maxWidth = "300px";
+      img.style.marginTop = "10px";
+      img.onerror = () => {
+        console.error("Failed to load QUONE image");
+        messageDiv.textContent = "Not a valid word";
+      };
+      messageDiv.innerHTML = '';
+      messageDiv.appendChild(img);
     } else {
       updateMessage("Not a valid word");
     }
