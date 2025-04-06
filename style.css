@@ -107,6 +107,9 @@ input[type="text"] {
   input[type="text"] {
     text-align: center;
   }
+  input[type="text"]::placeholder {
+    color: transparent;
+  }
 }
 
 .tile.selected {
