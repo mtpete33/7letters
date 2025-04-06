@@ -5,6 +5,10 @@ body {
   padding: 15px;
 }
 
+h1 {
+  border-bottom: 2px solid #e8e8e8;
+}
+
 .tile-container {
   display: flex;
   justify-content: center;
@@ -38,6 +42,10 @@ button {
 button:hover {
   background-color: #45a049;
   transform: translateY(-2px);
+}
+
+#messages {
+  margin-top: 15em;
 }
 
 #newHand {
