@@ -103,6 +103,7 @@ function resetGame() {
   score = 0;
   hand = [];
   usedTiles = 0;
+  document.getElementById('words-list').innerHTML = '';
   document.getElementById('score').textContent = 'Score: 0';
   document.getElementById('message').textContent = '';
   document.getElementById('wordInput').value = '';
@@ -230,6 +231,52 @@ async function checkWordValidity(word) {
   }
 }
 
+async function getWordDefinition(word) {
+  try {
+    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
+    if (!response.ok) return "Definition not found";
+    const data = await response.json();
+    return data[0]?.meanings[0]?.definitions[0]?.definition || "Definition not found";
+  } catch (error) {
+    console.error("Error fetching definition:", error);
+    return "Definition not found";
+  }
+}
+
+async function addWordToHistory(word, definition) {
+  const wordsList = document.getElementById('words-list');
+  const li = document.createElement('li');
+  li.className = 'word-item';
+  
+  const tooltip = document.createElement('div');
+  tooltip.className = 'word-tooltip';
+  tooltip.textContent = definition;
+  
+  li.textContent = word;
+  li.appendChild(tooltip);
+  
+  // Mobile touch handling
+  li.addEventListener('click', function() {
+    if (window.innerWidth <= 768) {
+      const wasActive = this.classList.contains('show-tooltip');
+      // Remove active class from all items
+      document.querySelectorAll('.word-item').forEach(item => {
+        item.classList.remove('show-tooltip');
+      });
+      if (!wasActive) {
+        this.classList.add('show-tooltip');
+      }
+    }
+  });
+  
+  // Insert at the beginning of the list
+  if (wordsList.firstChild) {
+    wordsList.insertBefore(li, wordsList.firstChild);
+  } else {
+    wordsList.appendChild(li);
+  }
+}
+
 async function submitWord() {
   const input = document.getElementById('wordInput');
   const word = input.value.toUpperCase();
@@ -299,6 +346,10 @@ async function submitWord() {
   drawTiles();
   input.value = '';
   checkGameCompletion();
+  
+  // Add word to history with definition
+  const definition = await getWordDefinition(word);
+  addWordToHistory(word, definition);
 
   document.getElementById('wordInput').focus();
 }
