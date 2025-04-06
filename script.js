@@ -113,7 +113,7 @@ function resetGame() {
   document.getElementById('newHand').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
   document.getElementById('submitWord').style.display = window.innerWidth > 768 ? 'inline-block' : 'none';
-  document.getElementById('newHand').disabled = true;
+  document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
   document.getElementById('wordInput').disabled = false;
@@ -190,7 +190,7 @@ function getNewHand() {
   remainingLetters.push(...hand);
   hand = [];
   // Subtract 1 point for new hand
-  score = Math.max(0, score - 1);
+  score -= 1;
   updateProgress();
   // Draw new hand of 7 tiles
   drawTiles(7);
