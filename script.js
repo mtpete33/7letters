@@ -30,15 +30,15 @@ function shuffleDeck() {
 function drawTiles(n = 7) {
   const availableSpaces = n - hand.length;
   const tilesToDraw = Math.min(availableSpaces, remainingLetters.length);
-  
+
   for (let i = 0; i < tilesToDraw; i++) {
     const randomIndex = Math.floor(Math.random() * remainingLetters.length);
     hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
-  
+
   // Remove any undefined or empty tiles
   hand = hand.filter(tile => tile);
-  
+
   renderHand();
   checkGameCompletion();
 }
@@ -69,22 +69,22 @@ function displayPreviousScores() {
 function endGame(giveUp = false) {
   const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
-  
+
   // Add bonus points for using all tiles
   if (!giveUp && endType === 'solitaire') {
     score += 15;
     updateProgress();
   }
-  
+
   const message = giveUp ? 
     `Game Over! You used ${progressPercent}% of available tiles` :
     `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' (+15 bonus points!)' : ''}`;
-  
+
   updateMessage(message);
   document.getElementById('message').style.color = endType === 'solitaire' ? '#008000' : '#000000';
   document.getElementById('message').style.fontWeight = 'bold';
   document.getElementById('message').style.fontSize = '1.2em';
-  
+
   // Show Play Again button and hide/disable other game controls
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
@@ -92,7 +92,7 @@ function endGame(giveUp = false) {
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordInput').disabled = true;
-  
+
   if (giveUp || endType === 'solitaire') {
     saveGameScore(endType);
   }
@@ -107,7 +107,7 @@ function resetGame() {
   document.getElementById('message').textContent = '';
   document.getElementById('wordInput').value = '';
   document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
-  
+
   // Re-enable and show all controls
   document.getElementById('playAgain').style.display = 'none';
   document.getElementById('newHand').style.display = 'inline-block';
@@ -117,7 +117,7 @@ function resetGame() {
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
   document.getElementById('wordInput').disabled = false;
-  
+
   // Start new game
   shuffleDeck();
   drawTiles();
@@ -192,18 +192,18 @@ function updateMessage(text) {
 async function checkWordValidity(word) {
   // Words that should not be counted even if they're in the API
   const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR']);
-  
+
   if (invalidWords.has(word)) {
     return false;
   }
 
   // Common words that might not be in the API that should count
   const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU', 'TOW', 'NET']);
-  
+
   if (commonWords.has(word)) {
     return true;
   }
-  
+
   try {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
     return response.ok;
@@ -267,81 +267,10 @@ async function submitWord() {
   document.getElementById('wordInput').focus();
 }
 
-// Virtual Keyboard
-function createVirtualKeyboard() {
-  const keyboard = document.querySelector('.virtual-keyboard');
-  const rows = [
-    'QWERTYUIOP'.split(''),
-    'ASDFGHJKL'.split(''),
-    'ZXCVBNM'.split('')
-  ];
-  
-  rows.forEach(row => {
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'keyboard-row';
-    
-    row.forEach(letter => {
-      const key = document.createElement('div');
-      key.className = 'key';
-      key.textContent = letter;
-      key.onclick = () => {
-        const input = document.getElementById('wordInput');
-        input.value += letter;
-        input.focus();
-      };
-      rowDiv.appendChild(key);
-    });
-
-    // Add Backspace or Submit button based on row
-    // if (row.includes('M')) {
-    //   const backspaceBtn = document.createElement('div');
-    //   backspaceBtn.className = 'key action-key';
-    //   backspaceBtn.textContent = '⌫';
-    //   backspaceBtn.onclick = () => {
-    //     const input = document.getElementById('wordInput');
-    //     input.value = input.value.slice(0, -1);
-    //     input.focus();
-    //   };
-    //   rowDiv.appendChild(backspaceBtn);
-    // }
-    
-    // Add special buttons
-    if (row.includes('Z')) {
-      const submitBtn = document.createElement('div');
-      submitBtn.className = 'key action-key';
-      submitBtn.id = 'submitKey';
-      submitBtn.textContent = 'SUBMIT';
-      submitBtn.onclick = submitWord;
-      rowDiv.insertBefore(submitBtn, rowDiv.firstChild);
-    } 
-    if (row.includes('M')) {
-      const backspaceBtn = document.createElement('div');
-      backspaceBtn.className = 'key action-key';
-      backspaceBtn.id = 'backspaceKey';
-      // backspaceBtn.textContent = '⌫';
-      backspaceBtn.textContent = 'DEL';
-      backspaceBtn.onclick = () => {
-        const input = document.getElementById('wordInput');
-        input.value = input.value.slice(0, -1);
-        input.focus();
-      };
-      rowDiv.appendChild(backspaceBtn);
-    }
-    
-    keyboard.appendChild(rowDiv);
-  });
-}
 
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
-createVirtualKeyboard();
 
-// Prevent mobile keyboard
-document.getElementById('wordInput').addEventListener('focus', (e) => {
-  if (window.innerWidth <= 768) {
-    e.target.blur();
-  }
-});
 document.getElementById('newHand').onclick = getNewHand;
 document.getElementById('giveUp').onclick = () => endGame(true);
 document.getElementById('playAgain').onclick = resetGame;
