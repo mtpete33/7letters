@@ -274,7 +274,6 @@ async function submitWord() {
   removeUsedLetters(word);
   drawTiles();
   input.value = '';
-  document.getElementById('newHand').disabled = false;
   checkGameCompletion();
 
   document.getElementById('wordInput').focus();
@@ -298,7 +297,6 @@ document.getElementById('cancelGiveUp').onclick = () => {
   document.getElementById('confirmModal').style.display = 'none';
 };
 document.getElementById('playAgain').onclick = resetGame;
-document.getElementById('newHand').disabled = true;
 const wordInput = document.getElementById('wordInput');
 wordInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') submitWord();
