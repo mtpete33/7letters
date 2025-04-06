@@ -28,6 +28,12 @@ function shuffleDeck() {
 }
 
 function drawTiles(n = 7) {
+  // TEMPORARY: Easter egg test
+  if (hand.length === 0) {
+    hand = ['Q', 'U', 'O', 'N', 'E'];
+    return;
+  }
+
   const availableSpaces = n - hand.length;
   const tilesToDraw = Math.min(availableSpaces, remainingLetters.length);
 
