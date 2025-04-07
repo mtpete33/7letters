@@ -191,7 +191,7 @@ function removeUsedLetters(word) {
 }
 
 function getNewHand() {
-  remainingLetters.push(...hand);
+  remainingLetters.push(...hand.map(tile => tile.letter));
   hand = [];
   score -= 1;
   updateProgress();
