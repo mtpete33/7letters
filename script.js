@@ -43,7 +43,7 @@ function drawTiles(n = 7) {
   hand = hand.filter(tile => tile);
   renderHand();
   checkGameCompletion();
-  
+
   // Reset the isNew flag after rendering
   hand.forEach(tile => tile.isNew = false);
 }
@@ -152,7 +152,7 @@ function renderHand() {
         const letter = tile.letter;
         const letterCount = hand.filter(t => t.letter === tile.letter).length;
         const letterUsedCount = currentWord.split('').filter(l => l === tile.letter).length;
-        
+
         if (tileDiv.classList.contains('active')) {
             // Remove the first instance of this letter from display
             const letters = currentWord.split('');
@@ -319,6 +319,7 @@ async function submitWord() {
       updateMessage("Not a valid word");
     }
     display.textContent = ''; // Clear the display
+    document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
     return;
   }
 
@@ -413,7 +414,7 @@ document.addEventListener('keydown', (event) => {
     display.textContent = display.textContent.slice(0, -1);
     return;
   }
-  
+
   if (event.key === 'Enter') {
     submitWord();
     return;
