@@ -33,14 +33,19 @@ function shuffleDeck() {
 function drawTiles(n = 7) {
   const availableSpaces = n - hand.length;
   const tilesToDraw = Math.min(availableSpaces, remainingLetters.length);
+  const startIndex = hand.length;
 
   for (let i = 0; i < tilesToDraw; i++) {
     const randomIndex = Math.floor(Math.random() * remainingLetters.length);
-    hand.push(remainingLetters.splice(randomIndex, 1)[0]);
+    const tile = remainingLetters.splice(randomIndex, 1)[0];
+    hand.push({ letter: tile, isNew: true });
   }
   hand = hand.filter(tile => tile);
   renderHand();
   checkGameCompletion();
+  
+  // Reset the isNew flag after rendering
+  hand.forEach(tile => tile.isNew = false);
 }
 
 function saveGameScore(endType) {
@@ -134,14 +139,15 @@ function renderHand() {
   const handDiv = document.getElementById('hand');
   handDiv.innerHTML = '';
   updateTilesRemaining();
-  hand.forEach((letter, index) => {
-    const tile = document.createElement('div');
-    tile.className = 'tile dealing';
-    tile.textContent = letter;
-    tile.dataset.index = index;
-    // Remove the dealing class after animation completes
-    setTimeout(() => tile.classList.remove('dealing'), 500 + (index * 100));
-    tile.onclick = () => {
+  hand.forEach((tile, index) => {
+    const tileDiv = document.createElement('div');
+    tileDiv.className = tile.isNew ? 'tile dealing' : 'tile';
+    tileDiv.textContent = tile.letter;
+    tileDiv.dataset.index = index;
+    if (tile.isNew) {
+      setTimeout(() => tileDiv.classList.remove('dealing'), 500 + (index * 100));
+    }
+    tileDiv.onclick = () => {
         const display = document.getElementById('wordDisplay');
         const currentWord = display.textContent;
         const letterCount = hand.filter(l => l === letter).length;
@@ -166,7 +172,7 @@ function updateProgress() {
 }
 
 function canMakeWord(word) {
-  const availableLetters = [...hand];
+  const availableLetters = hand.map(tile => tile.letter);
   for (let letter of word) {
     const index = availableLetters.indexOf(letter);
     if (index === -1) return false;
@@ -178,7 +184,7 @@ function canMakeWord(word) {
 function removeUsedLetters(word) {
   const lettersToRemove = word.split('');
   for (let letter of lettersToRemove) {
-    const index = hand.indexOf(letter);
+    const index = hand.findIndex(tile => tile.letter === letter);
     if (index !== -1) hand.splice(index, 1);
   }
 }
