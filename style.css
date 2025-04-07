@@ -73,7 +73,7 @@ button:hover {
 #newHand {
   /* background-color: #ff9800; */
   background-color: #00adff;
-  
+
 }
 
 #newHand:hover {
@@ -142,7 +142,7 @@ button:hover {
   .word-tooltip {
     display: none;
   }
-  
+
   .word-item.show-tooltip .word-tooltip {
     display: block;
   }
@@ -183,16 +183,18 @@ button:hover {
   margin: 10px auto;
 }
 
-input[type="text"] {
+#wordDisplay {
   text-align: center;
   padding: 10px;
   font-size: 20px;
   border: 2px solid #ddd;
   border-radius: 5px;
   width: 165px;
-  caret-color: transparent;
+  min-height: 24px;
   margin: 0;
+  background: white;
 }
+
 
 #clearInput {
   padding: 10px 8px;
@@ -209,10 +211,6 @@ input[type="text"] {
 #submitWord {
   margin-left: 0;
   padding: 10px 10px;
-}
-
-input[type="text"]::placeholder {
-  color: transparent;
 }
 
 #clearInput:hover {
@@ -288,7 +286,7 @@ input[type="text"]::placeholder {
 }
 
 @media screen and (max-width: 375px) {
-  input[type="text"] {
+  #wordDisplay {
     width: 145px;
   }
 }

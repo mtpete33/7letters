@@ -18,18 +18,15 @@ let usedTiles = 0;
 let score = 0;
 
 function shuffleDeck() {
-  // Calculate total tiles
   totalTiles = Object.values(letterBag).reduce((sum, count) => sum + count, 0);
   usedTiles = 0;
   remainingLetters = [];
-  // Create deck using all tiles from letterBag
   for (let letter in letterBag) {
     const count = letterBag[letter];
     for (let i = 0; i < count; i++) {
       remainingLetters.push(letter);
     }
   }
-  // Sort alphabetically to ensure consistent order
   remainingLetters.sort();
 }
 
@@ -41,10 +38,7 @@ function drawTiles(n = 7) {
     const randomIndex = Math.floor(Math.random() * remainingLetters.length);
     hand.push(remainingLetters.splice(randomIndex, 1)[0]);
   }
-
-  // Remove any undefined or empty tiles
   hand = hand.filter(tile => tile);
-
   renderHand();
   checkGameCompletion();
 }
@@ -76,7 +70,6 @@ function endGame(giveUp = false) {
   const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
 
-  // Add bonus points for using all tiles
   if (!giveUp && endType === 'solitaire') {
     score += 15;
     updateProgress();
@@ -91,7 +84,6 @@ function endGame(giveUp = false) {
   document.getElementById('message').style.fontWeight = 'bold';
   document.getElementById('message').style.fontSize = '1.2em';
 
-  // Show Play Again button and hide/disable other game controls
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
   document.getElementById('giveUp').style.display = 'none';
@@ -105,17 +97,15 @@ function endGame(giveUp = false) {
 }
 
 function resetGame() {
-  // Reset game state
   score = 0;
   hand = [];
   usedTiles = 0;
   document.getElementById('words-list').innerHTML = '';
   document.getElementById('score').textContent = 'Score: 0';
   document.getElementById('message').textContent = '';
-  document.getElementById('wordInput').value = '';
+  document.getElementById('wordDisplay').textContent = ''; // Clear the display
   document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
 
-  // Re-enable and show all controls
   document.getElementById('playAgain').style.display = 'none';
   document.getElementById('newHand').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
@@ -125,10 +115,9 @@ function resetGame() {
   document.getElementById('submitWord').disabled = false;
   document.getElementById('wordInput').disabled = false;
 
-  // Start new game
   shuffleDeck();
   drawTiles();
-  document.getElementById('wordInput').focus();
+  // document.getElementById('wordInput').focus();  // Removed focus
 }
 
 function checkGameCompletion() {
@@ -151,13 +140,13 @@ function renderHand() {
     tile.textContent = letter;
     tile.dataset.index = index;
     tile.onclick = () => {
-        const input = document.getElementById('wordInput');
-        const currentWord = input.value;
+        const display = document.getElementById('wordDisplay');
+        const currentWord = display.textContent;
         const letterCount = hand.filter(l => l === letter).length;
         const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
 
         if (letterUsedCount < letterCount) {
-            input.value += letter;
+            display.textContent += letter;
             tile.classList.add('selected');
             setTimeout(() => tile.classList.remove('selected'), 200);
         } else {
@@ -193,13 +182,10 @@ function removeUsedLetters(word) {
 }
 
 function getNewHand() {
-  // Return current hand to the bag
   remainingLetters.push(...hand);
   hand = [];
-  // Subtract 1 point for new hand
   score -= 1;
   updateProgress();
-  // Draw new hand of 7 tiles
   drawTiles(7);
 }
 
@@ -214,14 +200,12 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
-  // Words that should not be counted even if they're in the API
   const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP']);
 
   if (invalidWords.has(word)) {
     return false;
   }
 
-  // Common words that might not be in the API that should count
   const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU', 'TOW', 'NET', 'SPINED']);
 
   if (commonWords.has(word)) {
@@ -253,19 +237,17 @@ async function addWordToHistory(word, definition) {
   const wordsList = document.getElementById('words-list');
   const li = document.createElement('li');
   li.className = 'word-item';
-  
+
   const tooltip = document.createElement('div');
   tooltip.className = 'word-tooltip';
   tooltip.textContent = definition;
-  
+
   li.textContent = word;
   li.appendChild(tooltip);
-  
-  // Mobile touch handling
+
   li.addEventListener('click', function() {
     if (window.innerWidth <= 768) {
       const wasActive = this.classList.contains('show-tooltip');
-      // Remove active class from all items
       document.querySelectorAll('.word-item').forEach(item => {
         item.classList.remove('show-tooltip');
       });
@@ -274,8 +256,7 @@ async function addWordToHistory(word, definition) {
       }
     }
   });
-  
-  // Insert at the beginning of the list
+
   if (wordsList.firstChild) {
     wordsList.insertBefore(li, wordsList.firstChild);
   } else {
@@ -284,8 +265,8 @@ async function addWordToHistory(word, definition) {
 }
 
 async function submitWord() {
-  const input = document.getElementById('wordInput');
-  const word = input.value.toUpperCase();
+  const display = document.getElementById('wordDisplay');
+  const word = display.textContent.toUpperCase();
 
   if (word.length < 2) {
     updateMessage("Word must be at least 2 letters long");
@@ -312,42 +293,24 @@ async function submitWord() {
       };
       img.onerror = (e) => {
         console.error("Failed to load QUONE image:", e);
-        // Try the jpg as fallback
         img.src = "images/quone.jpg";
       };
-      // Force image to be treated as an image resource
       img.src = "./images/quone.webp?" + new Date().getTime();
       img.alt = "QUONE";
     } else {
       updateMessage("Not a valid word");
     }
-    input.value = '';
-    input.focus();
+    display.textContent = ''; // Clear the display
     return;
   }
 
   usedTiles += word.length;
-  // Calculate score based on word length
-  if (word.length === 7) {
-    score += 15;
-  } else if (word.length === 6) {
-    score += 8;
-  } else if (word.length === 5) {
-    score += 7;
-  } else if (word.length === 4) {
-    score += 5;
-  } else if (word.length === 3) {
-    score += 3;
-  } else if (word.length === 2) {
-    score += 2;
-  }
-
-  // Show success message with points earned
   const points = word.length === 7 ? 15 : 
                 word.length === 6 ? 8 : 
                 word.length === 5 ? 7 : 
                 word.length === 4 ? 5 : 
                 word.length === 3 ? 3 : 2;
+  score += points;
 
   const messageDiv = document.getElementById('message');
   messageDiv.classList.remove('fade-out');
@@ -366,18 +329,14 @@ async function submitWord() {
   updateProgress();
   removeUsedLetters(word);
   drawTiles();
-  input.value = '';
+  display.textContent = ''; // Clear the display
   checkGameCompletion();
-  
-  // Add word to history with definition
+
   const definition = await getWordDefinition(word);
   addWordToHistory(word, definition);
-
-  document.getElementById('wordInput').focus();
 }
 
 
-// Initialize game
 document.getElementById('submitWord').onclick = submitWord;
 
 function showConfirmModal(title, message, onConfirm) {
@@ -385,13 +344,13 @@ function showConfirmModal(title, message, onConfirm) {
   document.getElementById('modalTitle').textContent = title;
   document.getElementById('modalMessage').textContent = message;
   modal.style.display = 'block';
-  
+
   const confirmHandler = () => {
     modal.style.display = 'none';
     onConfirm();
     document.getElementById('modalConfirm').removeEventListener('click', confirmHandler);
   };
-  
+
   document.getElementById('modalConfirm').addEventListener('click', confirmHandler);
   document.getElementById('modalCancel').onclick = () => {
     modal.style.display = 'none';
@@ -415,45 +374,13 @@ document.getElementById('newHand').onclick = () => {
   );
 };
 document.getElementById('playAgain').onclick = resetGame;
-const wordInput = document.getElementById('wordInput');
-wordInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') submitWord();
-});
-// Only allow keyboard input on non-touch devices
-if (!('ontouchstart' in window)) {
-  wordInput.removeAttribute('readonly');
-
-  wordInput.addEventListener('keydown', (e) => {
-    if (e.key.length === 1) { // If it's a character key
-      const letter = e.key.toUpperCase();
-      const currentWord = wordInput.value;
-      const letterCount = hand.filter(l => l === letter).length;
-      const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
-
-      if (letterCount === 0) {
-        e.preventDefault();
-        updateMessage(`"${letter}" is not available in your hand`);
-      } else if (letterUsedCount >= letterCount) {
-        e.preventDefault();
-        updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
-      }
-    }
-  });
-
-  wordInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.toUpperCase();
-  });
-}
 
 // Clear input button
 document.getElementById('clearInput').onclick = () => {
-  document.getElementById('wordInput').value = '';
-  document.getElementById('wordInput').focus();
+  document.getElementById('wordDisplay').textContent = ''; // Clear the display
 };
 
-// Start game
 shuffleDeck();
 drawTiles();
-document.getElementById('wordInput').focus();
 displayPreviousScores();
 document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
