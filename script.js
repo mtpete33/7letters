@@ -265,7 +265,8 @@ async function addWordToHistory(word, definition) {
   li.textContent = word;
   li.appendChild(tooltip);
 
-  li.addEventListener('click', function() {
+  li.addEventListener('click', function(e) {
+    e.stopPropagation();
     if (window.innerWidth <= 768) {
       const wasActive = this.classList.contains('show-tooltip');
       document.querySelectorAll('.word-item').forEach(item => {
@@ -276,6 +277,16 @@ async function addWordToHistory(word, definition) {
       }
     }
   });
+
+  // Add click handler to document to close tooltips
+  if (!document.hasClickHandler) {
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.word-item').forEach(item => {
+        item.classList.remove('show-tooltip');
+      });
+    });
+    document.hasClickHandler = true;
+  }
 
   if (wordsList.firstChild) {
     wordsList.insertBefore(li, wordsList.firstChild);
