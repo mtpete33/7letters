@@ -380,7 +380,6 @@ async function submitWord() {
 // Initialize game
 document.getElementById('submitWord').onclick = submitWord;
 
-document.getElementById('newHand').addEventListener('click', getNewHand);
 function showConfirmModal(title, message, onConfirm) {
   const modal = document.getElementById('confirmModal');
   document.getElementById('modalTitle').textContent = title;
