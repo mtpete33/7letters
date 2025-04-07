@@ -15,14 +15,14 @@ body {
 }
 
 h1 {
-  font-family: 'Century', serif;
+  font-family: 'Century', 'Georgia', 'Times New Roman', Times, serif;
   border-bottom: 2px solid #e8e8e8;
   margin-top: 35px;
   font-size: 2.5em;
 }
 
 h3 {
-  font-family: 'Century', serif;
+  font-family: 'Century', 'Georgia', 'Times New Roman', Times, serif;
 }
 .tile-container {
   display: flex;
