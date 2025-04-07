@@ -67,8 +67,8 @@ function displayPreviousScores() {
 }
 
 function endGame(giveUp = false) {
-  const endType = remainingLetters.length === 0 && hand.length === 0 ? 'solitaire' : 'incomplete';
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+  const endType = progressPercent === 100 ? 'solitaire' : 'incomplete';
 
   if (!giveUp && endType === 'solitaire') {
     score += 15;
