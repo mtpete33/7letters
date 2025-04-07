@@ -1,16 +1,29 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   text-align: center;
   background-color: #f7f7f7;
   padding: 15px;
   border-bottom: 2px solid #e8e8e8;
 }
 
-h1 {
-  border-bottom: 2px solid #e8e8e8;
-  margin-top: 35px;
+
+.outfit-tiles {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
 }
 
+h1 {
+  font-family: 'Century', serif;
+  border-bottom: 2px solid #e8e8e8;
+  margin-top: 35px;
+  font-size: 2.5em;
+}
+
+h3 {
+  font-family: 'Century', serif;
+}
 .tile-container {
   display: flex;
   justify-content: center;
@@ -63,6 +76,7 @@ button {
   background-color: #4CAF50;
   color: white;
   transition: all 0.3s ease;
+  font-family: 'Hind', sans-serif;
 }
 
 button:hover {
