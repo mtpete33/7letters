@@ -146,29 +146,31 @@ function renderHand() {
     if (tile.isNew) {
       setTimeout(() => tileDiv.classList.remove('dealing'), 500 + (index * 100));
     }
-    tileDiv.onclick = () => {
-        const display = document.getElementById('wordDisplay');
-        const currentWord = display.textContent;
+    const display = document.getElementById('wordDisplay');
+    tileDiv.onclick = (e) => {
         const letter = tile.letter;
-        const letterCount = hand.filter(t => t.letter === tile.letter).length;
-        const letterUsedCount = currentWord.split('').filter(l => l === tile.letter).length;
-
         if (tileDiv.classList.contains('active')) {
-            // Remove the first instance of this letter from display
-            const letters = currentWord.split('');
-            const index = letters.indexOf(letter);
+            const currentWord = display.textContent;
+            const index = currentWord.indexOf(letter);
             if (index > -1) {
-                letters.splice(index, 1);
-                display.textContent = letters.join('');
+                display.textContent = currentWord.slice(0, index) + currentWord.slice(index + 1);
             }
             tileDiv.classList.remove('active');
-        } else if (letterUsedCount < letterCount) {
-            display.textContent += letter;
-            tileDiv.classList.add('active');
-            tileDiv.classList.add('selected');
-            setTimeout(() => tileDiv.classList.remove('selected'), 200);
         } else {
-            updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
+            const currentWord = display.textContent;
+            const letterCount = hand.filter(t => t.letter === letter).length;
+            const letterUsedCount = (currentWord.match(new RegExp(letter, 'g')) || []).length;
+            
+            if (letterUsedCount < letterCount) {
+                display.textContent += letter;
+                tileDiv.classList.add('active');
+                requestAnimationFrame(() => {
+                    tileDiv.classList.add('selected');
+                    setTimeout(() => tileDiv.classList.remove('selected'), 150);
+                });
+            } else {
+                updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
+            }
         }
     };
     handDiv.appendChild(tileDiv);
