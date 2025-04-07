@@ -160,7 +160,7 @@ function renderHand() {
             const currentWord = display.textContent;
             const letterCount = hand.filter(t => t.letter === letter).length;
             const letterUsedCount = (currentWord.match(new RegExp(letter, 'g')) || []).length;
-            
+
             if (letterUsedCount < letterCount) {
                 display.textContent += letter;
                 tileDiv.classList.add('active');
@@ -321,13 +321,13 @@ async function submitWord() {
         img.style.marginTop = "10px";
         img.style.display = "block";
         messageDiv.appendChild(img);
-        
+
         const quoteText = document.createElement('div');
         quoteText.style.marginTop = "10px";
         quoteText.style.fontStyle = "italic";
         quoteText.textContent = "If a patient gets difficult, you QUONE him.";
         messageDiv.appendChild(quoteText);
-        
+
         const invalidText = document.createElement('div');
         invalidText.style.marginTop = "5px";
         invalidText.textContent = "Not a valid word. Try again.";
@@ -455,7 +455,9 @@ document.addEventListener('keydown', (event) => {
     const currentWord = display.textContent;
     const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
 
-    if (letterUsedCount < letterCount) {
+    if (letterCount === 0) {
+      updateMessage(`There is no '${letter}' in your hand`);
+    } else if (letterUsedCount < letterCount) {
       display.textContent += letter;
       // Find and highlight the corresponding tile
       const tiles = document.querySelectorAll('.tile');
