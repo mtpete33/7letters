@@ -67,7 +67,7 @@ function displayPreviousScores() {
   const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = scores.map(game => {
-    const endMessage = game.endType === 'solitaire' ? 'Solitaire!' : `${game.tilesLeft} tiles left`;
+    const endMessage = game.endType === 'solitaire' ? 'Win! 100%' : `${game.tilesLeft} tiles left`;
     return `<li>${game.score} points (${endMessage}) - ${game.date}</li>`;
   }).join('');
 }
