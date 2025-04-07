@@ -162,7 +162,7 @@ function renderHand() {
             updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
         }
     };
-    handDiv.appendChild(tile);
+    handDiv.appendChild(tileDiv);
   });
 }
 
