@@ -399,6 +399,17 @@ document.getElementById('playAgain').onclick = resetGame;
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Backspace') {
     const display = document.getElementById('wordDisplay');
+    const lastLetter = display.textContent.slice(-1);
+    if (lastLetter) {
+      // Remove highlight from the last used tile of this letter
+      const tiles = Array.from(document.querySelectorAll('.tile.active'));
+      for (let i = tiles.length - 1; i >= 0; i--) {
+        if (tiles[i].textContent === lastLetter) {
+          tiles[i].classList.remove('active');
+          break;
+        }
+      }
+    }
     display.textContent = display.textContent.slice(0, -1);
     return;
   }
@@ -417,6 +428,14 @@ document.addEventListener('keydown', (event) => {
 
     if (letterUsedCount < letterCount) {
       display.textContent += letter;
+      // Find and highlight the corresponding tile
+      const tiles = document.querySelectorAll('.tile');
+      for (let tile of tiles) {
+        if (tile.textContent === letter && !tile.classList.contains('active')) {
+          tile.classList.add('active');
+          break;
+        }
+      }
     } else {
       updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
     }
