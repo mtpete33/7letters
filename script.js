@@ -136,9 +136,11 @@ function renderHand() {
   updateTilesRemaining();
   hand.forEach((letter, index) => {
     const tile = document.createElement('div');
-    tile.className = 'tile';
+    tile.className = 'tile dealing';
     tile.textContent = letter;
     tile.dataset.index = index;
+    // Remove the dealing class after animation completes
+    setTimeout(() => tile.classList.remove('dealing'), 500 + (index * 100));
     tile.onclick = () => {
         const display = document.getElementById('wordDisplay');
         const currentWord = display.textContent;
