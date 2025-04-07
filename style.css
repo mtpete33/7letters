@@ -31,6 +31,21 @@ h3 {
   /* margin: 20px; */
 }
 
+#rulesBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #cdcdcd;
+  color: #000000;
+  transition: all 0.3s ease;
+  font-family: 'Hind', sans-serif;
+}
+
 .tile {
   width: 43px;
   height: 43px;
@@ -70,7 +85,7 @@ button {
   padding: 10px 15px;
   margin: 10px 5px;
   font-size: 16px;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   background-color: #4CAF50;
@@ -128,6 +143,7 @@ button:hover {
   padding: 10px;
   background-color: #fff;
   border-radius: 5px;
+  border: 1px solid black;
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
@@ -230,7 +246,7 @@ button:hover {
 #clearInput {
   padding: 10px 8px;
   font-size: 16px;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   background-color: #666;
