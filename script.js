@@ -152,9 +152,19 @@ function renderHand() {
         const letter = tile.letter;
         const letterCount = hand.filter(t => t.letter === tile.letter).length;
         const letterUsedCount = currentWord.split('').filter(l => l === tile.letter).length;
-
-        if (letterUsedCount < letterCount) {
+        
+        if (tileDiv.classList.contains('active')) {
+            // Remove the first instance of this letter from display
+            const letters = currentWord.split('');
+            const index = letters.indexOf(letter);
+            if (index > -1) {
+                letters.splice(index, 1);
+                display.textContent = letters.join('');
+            }
+            tileDiv.classList.remove('active');
+        } else if (letterUsedCount < letterCount) {
             display.textContent += letter;
+            tileDiv.classList.add('active');
             tileDiv.classList.add('selected');
             setTimeout(() => tileDiv.classList.remove('selected'), 200);
         } else {
@@ -338,6 +348,7 @@ async function submitWord() {
   removeUsedLetters(word);
   drawTiles();
   display.textContent = ''; // Clear the display
+  document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
   checkGameCompletion();
 
   const definition = await getWordDefinition(word);
@@ -414,6 +425,7 @@ document.addEventListener('keydown', (event) => {
 
 document.getElementById('clearInput').onclick = () => {
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
+  document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
 };
 
 shuffleDeck();
