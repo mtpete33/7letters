@@ -17,6 +17,37 @@
   <button id="rulesBtn">Rules</button>
   <h1>Word Solitaire</h1>
 
+  <div id="rulesModal" class="modal">
+    <div class="modal-content">
+      <h2>How To Play</h2>
+      <h3>"A little luck, a little skill, a lotta fun"</h3>
+      <div class="rules-text">
+        <p>You have 7 letter tiles in your hand, and 43 in the bag. Make valid scrabble words out of your hand by clicking the letters and submitting the word for points. (2-letter minimum words).</p>
+        <p>When you play a word your hand will be replenished with tiles from the bag. Your goal is to use up ALL 50 letter tiles with the highest point total possible.</p>
+        
+        <h4>Points:</h4>
+        <ul>
+          <li>2-letters: 2pts</li>
+          <li>3-letters: 3pts</li>
+          <li>4-letters: 5pts</li>
+          <li>5-letters: 7pts</li>
+          <li>6-letters: 8pts</li>
+          <li>All 7 letters: 15pts</li>
+        </ul>
+
+        <h4>Tips:</h4>
+        <ol>
+          <li>Keep an eye on your 'Tiles in bag' count to plan your end game strategy with the final few letters. Your goal is to use them all up.</li>
+          <li>Use up difficult letters early (J, Q, X, Z) so you don't get stuck with them at the end.</li>
+          <li>If you get stuck, use the Deal New Hand button to get 7 new random letters from the bag.</li>
+          <li>Don't forget about 2-letter words, they can come in handy in a pinch!</li>
+        </ol>
+        <p>Good luck!</p>
+      </div>
+      <button id="closeRules">Close</button>
+    </div>
+  </div>
+
   <div id="score">Score: 0</div>
   <div id="progress"></div>
   <div id="tiles-remaining"></div>

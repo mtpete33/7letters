@@ -478,6 +478,25 @@ document.getElementById('clearInput').onclick = () => {
   document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
 };
 
+// Rules modal functionality
+const rulesModal = document.getElementById('rulesModal');
+const rulesBtn = document.getElementById('rulesBtn');
+const closeRules = document.getElementById('closeRules');
+
+rulesBtn.onclick = () => {
+  rulesModal.style.display = 'block';
+};
+
+closeRules.onclick = () => {
+  rulesModal.style.display = 'none';
+};
+
+window.onclick = (event) => {
+  if (event.target === rulesModal) {
+    rulesModal.style.display = 'none';
+  }
+};
+
 shuffleDeck();
 drawTiles();
 displayPreviousScores();
