@@ -310,6 +310,17 @@ async function submitWord() {
         img.style.marginTop = "10px";
         img.style.display = "block";
         messageDiv.appendChild(img);
+        
+        const quoteText = document.createElement('div');
+        quoteText.style.marginTop = "10px";
+        quoteText.style.fontStyle = "italic";
+        quoteText.textContent = "If a patient gets difficult, you QUONE him.";
+        messageDiv.appendChild(quoteText);
+        
+        const invalidText = document.createElement('div');
+        invalidText.style.marginTop = "5px";
+        invalidText.textContent = "Not a valid word. Try again.";
+        messageDiv.appendChild(invalidText);
       };
       img.onerror = (e) => {
         console.error("Failed to load QUONE image:", e);
