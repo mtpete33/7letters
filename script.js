@@ -376,6 +376,34 @@ document.getElementById('newHand').onclick = () => {
 document.getElementById('playAgain').onclick = resetGame;
 
 // Clear input button
+// Handle keyboard input
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Backspace') {
+    const display = document.getElementById('wordDisplay');
+    display.textContent = display.textContent.slice(0, -1);
+    return;
+  }
+  
+  if (event.key === 'Enter') {
+    submitWord();
+    return;
+  }
+
+  const letter = event.key.toUpperCase();
+  if (letter.length === 1 && letter.match(/[A-Z]/)) {
+    const letterCount = hand.filter(l => l === letter).length;
+    const display = document.getElementById('wordDisplay');
+    const currentWord = display.textContent;
+    const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
+
+    if (letterUsedCount < letterCount) {
+      display.textContent += letter;
+    } else {
+      updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
+    }
+  }
+});
+
 document.getElementById('clearInput').onclick = () => {
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
 };
