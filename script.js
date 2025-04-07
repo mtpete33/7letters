@@ -150,13 +150,14 @@ function renderHand() {
     tileDiv.onclick = () => {
         const display = document.getElementById('wordDisplay');
         const currentWord = display.textContent;
-        const letterCount = hand.filter(l => l === letter).length;
+        const letter = tile.letter;
+        const letterCount = hand.filter(t => t.letter === letter).length;
         const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
 
         if (letterUsedCount < letterCount) {
             display.textContent += letter;
-            tile.classList.add('selected');
-            setTimeout(() => tile.classList.remove('selected'), 200);
+            tileDiv.classList.add('selected');
+            setTimeout(() => tileDiv.classList.remove('selected'), 200);
         } else {
             updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
         }
