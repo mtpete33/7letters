@@ -1,15 +1,15 @@
-// const letterBag = {
-//   A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
-//   I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
-//   Q: 1, R: 3, S: 2, T: 3, U: 4, V: 1, W: 1, X: 1,
-//   Y: 1, Z: 1
-// };
+const letterBag = {
+  A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
+  I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
+  Q: 1, R: 3, S: 2, T: 3, U: 4, V: 1, W: 1, X: 1,
+  Y: 1, Z: 1
+};
 
 // Uncomment for testing QUONE
-const letterBag = {
-  E: 2, O: 2, N: 2,
-  Q: 2, U: 2 
-};
+// const letterBag = {
+//   E: 2, O: 2, N: 2,
+//   Q: 2, U: 2 
+// };
 
 let remainingLetters = [];
 let hand = [];
@@ -306,7 +306,7 @@ async function submitWord() {
       const img = new Image();
       img.onload = () => {
         messageDiv.innerHTML = '';
-        img.style.maxWidth = "300px";
+        img.style.maxWidth = "250px";
         img.style.marginTop = "10px";
         img.style.display = "block";
         messageDiv.appendChild(img);
