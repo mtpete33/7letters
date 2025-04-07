@@ -151,8 +151,8 @@ function renderHand() {
         const display = document.getElementById('wordDisplay');
         const currentWord = display.textContent;
         const letter = tile.letter;
-        const letterCount = hand.filter(t => t.letter === letter).length;
-        const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
+        const letterCount = hand.filter(t => t.letter === tile.letter).length;
+        const letterUsedCount = currentWord.split('').filter(l => l === tile.letter).length;
 
         if (letterUsedCount < letterCount) {
             display.textContent += letter;
