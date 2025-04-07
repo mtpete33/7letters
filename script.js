@@ -118,7 +118,6 @@ function resetGame() {
   document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
-  document.getElementById('wordInput').disabled = false;
 
   shuffleDeck();
   drawTiles();
