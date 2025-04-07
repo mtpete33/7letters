@@ -400,7 +400,7 @@ document.addEventListener('keydown', (event) => {
 
   const letter = event.key.toUpperCase();
   if (letter.length === 1 && letter.match(/[A-Z]/)) {
-    const letterCount = hand.filter(l => l === letter).length;
+    const letterCount = hand.filter(tile => tile.letter === letter).length;
     const display = document.getElementById('wordDisplay');
     const currentWord = display.textContent;
     const letterUsedCount = currentWord.split('').filter(l => l === letter).length;
