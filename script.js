@@ -314,8 +314,12 @@ async function submitWord() {
       img.onerror = (e) => {
         console.error("Failed to load QUONE image:", e);
         img.src = "images/quone.jpg";
+        img.onerror = (e) => {
+          console.error("Failed to load fallback QUONE image:", e);
+          messageDiv.textContent = "QUONE!";
+        };
       };
-      img.src = "./images/quone.webp?" + new Date().getTime();
+      img.src = "images/quone.webp";
       img.alt = "QUONE";
     } else {
       updateMessage("Not a valid word");
