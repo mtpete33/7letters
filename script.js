@@ -89,7 +89,7 @@ function endGame(giveUp = false) {
   document.getElementById('giveUp').style.display = 'none';
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
-  document.getElementById('wordInput').disabled = true;
+  document.getElementById('wordDisplay').textContent = ''; // Clear the display
 
   if (giveUp || endType === 'solitaire') {
     saveGameScore(endType);
