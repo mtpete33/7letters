@@ -82,7 +82,7 @@ function endGame(giveUp = false) {
 
   const message = giveUp ? 
     `Game Over! You used ${progressPercent}% of available tiles` :
-    `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' (+15 bonus points!)' : ''}`;
+    `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' +15 bonus points!' : ''}`;
 
   const messageDiv = document.getElementById('message');
   messageDiv.textContent = message;
