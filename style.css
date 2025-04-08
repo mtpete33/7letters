@@ -451,11 +451,13 @@ footer a:hover {
   background-color: #f00;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   animation: fall 3s linear forwards;
+  top: -10px;
+  z-index: 1000;
 }
 
 @keyframes fall {
   0% {
-    transform: translateY(-100vh) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
   100% {
