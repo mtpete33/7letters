@@ -1,10 +1,10 @@
 // Regular game bag
-// const letterBag = {
-//   A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
-//   I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
-//   Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
-//   Y: 1, Z: 1
-// };
+const letterBag = {
+  A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
+  I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
+  Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
+  Y: 1, Z: 1
+};
 
 // Uncomment for testing QUONE
 // const letterBag = {
@@ -13,9 +13,9 @@
 // };
 
 // Test mode - uncomment this for quick endgame testing
-const letterBag = {
-  A: 1, T: 1 
-};
+// const letterBag = {
+//   A: 1, T: 1 
+// };
 
 let remainingLetters = [];
 let hand = [];
@@ -64,7 +64,7 @@ function saveGameScore(endType) {
     endType
   };
   previousScores.unshift(gameResult);
-  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 5)));
+  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 10)));
   displayPreviousScores();
 }
 
@@ -108,7 +108,7 @@ function endGame(giveUp = false) {
   congratsDiv.textContent = message;
   congratsDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
   document.getElementById('message').textContent = '';
-
+  document.getElementById('message').style.display = 'none';
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
   document.getElementById('giveUp').style.display = 'none';
@@ -127,6 +127,7 @@ function resetGame() {
   usedTiles = 0;
   document.getElementById('words-list').innerHTML = '';
   document.getElementById('score').textContent = 'Score: 0';
+  document.getElementById('message').style.display = 'flex';
   document.getElementById('message').textContent = '';
   document.getElementById('congratsMessage').textContent = '';
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
@@ -241,7 +242,7 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT']);
 
   if (invalidWords.has(word)) {
     return false;
@@ -393,7 +394,7 @@ async function submitWord() {
 
     usedTiles += word.length;
     const points = word.length === 7 ? 15 : 
-                  word.length === 6 ? 8 : 
+                  word.length === 6 ? 10 : 
                   word.length === 5 ? 7 : 
                   word.length === 4 ? 5 : 
                   word.length === 3 ? 3 : 2;
