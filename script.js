@@ -116,7 +116,10 @@ function endGame(giveUp = false) {
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
 
-  saveGameScore(endType);
+  // Only save score once, at the end
+  if (!giveUp || endType === 'solitaire') {
+    saveGameScore(endType);
+  }
 }
 
 function resetGame() {
