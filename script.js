@@ -109,10 +109,15 @@ function endGame(giveUp = false) {
   messageDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
   messageDiv.style.fontWeight = 'bold';
   messageDiv.style.fontSize = '1.2em';
-  // Remove any previous fade-out class and prevent future fades
-  messageDiv.classList.remove('fade-out');
   messageDiv.style.opacity = '1';
   messageDiv.style.transition = 'none';
+  // Remove the fade-out class and its event listeners
+  messageDiv.classList.remove('fade-out');
+  // Clear any existing timeouts
+  if (messageDiv.fadeTimeout) {
+    clearTimeout(messageDiv.fadeTimeout);
+    messageDiv.fadeTimeout = null;
+  }
 
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
