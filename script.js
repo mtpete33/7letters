@@ -295,9 +295,17 @@ async function addWordToHistory(word, definition) {
   }
 }
 
+let isSubmitting = false;
+
 async function submitWord() {
+  if (isSubmitting) return;
+  
+  const submitButton = document.getElementById('submitWord');
   const display = document.getElementById('wordDisplay');
   const word = display.textContent.toUpperCase();
+  
+  isSubmitting = true;
+  submitButton.disabled = true;
 
   if (word.length < 2) {
     updateMessage("Word must be at least 2 letters long");
@@ -392,6 +400,9 @@ async function submitWord() {
 
   const definition = await getWordDefinition(word);
   addWordToHistory(word, definition);
+} finally {
+  isSubmitting = false;
+  document.getElementById('submitWord').disabled = false;
 }
 
 
