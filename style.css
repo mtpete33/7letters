@@ -47,7 +47,7 @@ h3 {
   background-color: #cdcdcd;
   color: #000000;
   transition: all 0.3s ease;
-  font-family: 'Hind', sans-serif;
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .tile {
@@ -95,7 +95,7 @@ button {
   background-color: #4CAF50;
   color: white;
   transition: all 0.3s ease;
-  font-family: 'Hind', sans-serif;
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 button:hover {
@@ -351,10 +351,11 @@ button:hover {
 
 .rules-text {
   text-align: center;
-  padding: 0 15px;
+  padding: 0 5px;
   max-height: 60vh;
   overflow-y: auto;
   font-size: 14px;
+  border: 1px solid #ddd;
 }
 
 .rules-text h3 {
