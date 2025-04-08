@@ -226,7 +226,7 @@ async function checkWordValidity(word) {
     return false;
   }
 
-  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU', 'TOW', 'NET', 'SPINED', 'CUE', 'NUG']);
+  const commonWords = new Set(['THE', 'AN', 'A', 'IN', 'ON', 'AT', 'TO', 'FOR', 'OF', 'WITH', 'BY', 'AND', 'OR', 'BUT', 'NOT', 'IS', 'IT', 'BE', 'YOU', 'TOW', 'NET', 'SPINED', 'CUE', 'NUG', 'DUNK', 'OUR', 'ALL', 'ANY', 'CAN', 'HAS', 'HERE', 'THIS', 'THAT', 'WAS', 'WERE', 'WHAT', 'WHEN', 'WHERE', 'WHICH']);
 
   if (commonWords.has(word)) {
     return true;
