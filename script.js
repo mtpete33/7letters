@@ -150,7 +150,6 @@ function resetGame() {
 
 function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
-    const progressPercent = Math.round((usedTiles / totalTiles) * 100);
     endGame(false);
   }
 }
