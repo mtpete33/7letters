@@ -104,20 +104,10 @@ function endGame(giveUp = false) {
     `Game Over! You used ${progressPercent}% of available tiles` :
     `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' +15 bonus points!' : ''}`;
 
-  const messageDiv = document.getElementById('message');
-  messageDiv.textContent = message;
-  messageDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
-  messageDiv.style.fontWeight = 'bold';
-  messageDiv.style.fontSize = '1.2em';
-  messageDiv.style.opacity = '1';
-  messageDiv.style.transition = 'none';
-  // Remove the fade-out class and its event listeners
-  messageDiv.classList.remove('fade-out');
-  // Clear any existing timeouts
-  if (messageDiv.fadeTimeout) {
-    clearTimeout(messageDiv.fadeTimeout);
-    messageDiv.fadeTimeout = null;
-  }
+  const congratsDiv = document.getElementById('congratsMessage');
+  congratsDiv.textContent = message;
+  congratsDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
+  document.getElementById('message').textContent = '';
 
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
@@ -138,6 +128,7 @@ function resetGame() {
   document.getElementById('words-list').innerHTML = '';
   document.getElementById('score').textContent = 'Score: 0';
   document.getElementById('message').textContent = '';
+  document.getElementById('congratsMessage').textContent = '';
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
   document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
 
