@@ -55,6 +55,9 @@ function drawTiles(n = 7) {
 }
 
 function saveGameScore(endType) {
+  console.log(`Saving score - called from: ${new Error().stack.split('\n')[2].trim()}`);
+  console.log(`Save details - Score: ${score}, EndType: ${endType}, TilesLeft: ${hand.length + remainingLetters.length}`);
+  
   const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   const gameResult = {
