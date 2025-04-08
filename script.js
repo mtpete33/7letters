@@ -320,6 +320,9 @@ async function submitWord() {
       img.onload = () => {
         const container = document.createElement('div');
         container.style.padding = "10px";
+        container.style.display = "flex";
+        container.style.flexDirection = "column";
+        container.style.alignItems = "center";
         
         img.style.maxWidth = "250px";
         img.style.marginTop = "10px";
