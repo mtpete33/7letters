@@ -84,10 +84,12 @@ function endGame(giveUp = false) {
     `Game Over! You used ${progressPercent}% of available tiles` :
     `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' (+15 bonus points!)' : ''}`;
 
-  updateMessage(message);
-  document.getElementById('message').style.color = endType === 'solitaire' ? '#008000' : '#000000';
-  document.getElementById('message').style.fontWeight = 'bold';
-  document.getElementById('message').style.fontSize = '1.2em';
+  const messageDiv = document.getElementById('message');
+  messageDiv.textContent = message;
+  messageDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
+  messageDiv.style.fontWeight = 'bold';
+  messageDiv.style.fontSize = '1.2em';
+  messageDiv.classList.remove('fade-out');
 
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
