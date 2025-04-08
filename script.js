@@ -82,37 +82,13 @@ function displayPreviousScores() {
 
 function endGame(giveUp = false) {
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
-  const endType = progressPercent === 100 ? 'solitaire' : 'incomplete';
-
-  if (!giveUp && endType === 'solitaire') {
-    score += 15;
-    updateProgress();
-    
-    // Create confetti
-    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-    for (let i = 0; i < 50; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDelay = Math.random() * 2 + 's';
-      document.body.appendChild(confetti);
-      
-      // Remove confetti after animation
-      setTimeout(() => confetti.remove(), 5000);
-    }
-  }
-
-  // Save score only once at the end
-  saveGameScore(endType);
-
-  const message = giveUp ? 
-    `Game Over! You used ${progressPercent}% of available tiles` :
-    `Congratulations! You've completed the game using ${progressPercent}% of tiles!${endType === 'solitaire' ? ' +15 bonus points!' : ''}`;
-
+  saveGameScore('incomplete');
+  
+  const message = `Game Over! You used ${progressPercent}% of available tiles`;
   const congratsDiv = document.getElementById('congratsMessage');
   congratsDiv.textContent = message;
-  congratsDiv.style.color = endType === 'solitaire' ? '#008000' : '#000000';
+  congratsDiv.style.color = '#000000';
+  
   document.getElementById('message').textContent = '';
   document.getElementById('message').style.display = 'none';
   document.getElementById('playAgain').style.display = 'inline-block';
@@ -120,7 +96,7 @@ function endGame(giveUp = false) {
   document.getElementById('giveUp').style.display = 'none';
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
-  document.getElementById('wordDisplay').textContent = ''; // Clear the display
+  document.getElementById('wordDisplay').textContent = '';
 }
 
 function resetGame() {
@@ -150,7 +126,40 @@ function resetGame() {
 
 function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
-    endGame(false);
+    const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+    if (progressPercent === 100) {
+      score += 15;
+      updateProgress();
+      saveGameScore('solitaire');
+      
+      // Create confetti
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => confetti.remove(), 5000);
+      }
+
+      const message = `Congratulations! You've completed the game using ${progressPercent}% of tiles! +15 bonus points!`;
+      const congratsDiv = document.getElementById('congratsMessage');
+      congratsDiv.textContent = message;
+      congratsDiv.style.color = '#008000';
+      
+      document.getElementById('message').textContent = '';
+      document.getElementById('message').style.display = 'none';
+      document.getElementById('playAgain').style.display = 'inline-block';
+      document.getElementById('newHand').style.display = 'none';
+      document.getElementById('giveUp').style.display = 'none';
+      document.getElementById('submitWord').style.display = 'none';
+      document.getElementById('submitWord').disabled = true;
+      document.getElementById('wordDisplay').textContent = '';
+    }
   }
 }
 
