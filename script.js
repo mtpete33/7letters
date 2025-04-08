@@ -98,12 +98,10 @@ function endGame(giveUp = false) {
       // Remove confetti after animation
       setTimeout(() => confetti.remove(), 5000);
     }
-    // Save score for win condition
-    saveGameScore('solitaire');
-  } else if (giveUp) {
-    // Save score for give up condition
-    saveGameScore('incomplete');
   }
+
+  // Save score only once at the end
+  saveGameScore(endType);
 
   const message = giveUp ? 
     `Game Over! You used ${progressPercent}% of available tiles` :
