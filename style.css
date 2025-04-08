@@ -395,5 +395,21 @@ button:hover {
 .tile-container {
   gap: 2px;
 }
+}
 
+footer {
+  margin-top: 30px;
+  padding: 15px;
+  text-align: center;
+  border-top: 2px solid #e8e8e8;
+  font-family: "Outfit", sans-serif;
+}
+
+footer a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
