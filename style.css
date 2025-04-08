@@ -117,13 +117,16 @@ button:hover {
 }
 
 #congratsMessage {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: none;
   padding: 10px;
   font-weight: bold;
   font-size: 1.2em;
   text-align: center;
+  margin: 10px auto;
+}
+
+#congratsMessage:not(:empty) {
+  display: block;
 }
 
 #message.fade-out {
