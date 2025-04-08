@@ -54,7 +54,14 @@ function drawTiles(n = 7) {
   hand.forEach(tile => tile.isNew = false);
 }
 
+let hasGameBeenSaved = false;
+
 function saveGameScore(endType) {
+  if (hasGameBeenSaved) {
+    console.log('Game already saved, skipping duplicate save');
+    return;
+  }
+  
   console.log(`Saving score - called from: ${new Error().stack.split('\n')[2].trim()}`);
   console.log(`Save details - Score: ${score}, EndType: ${endType}, TilesLeft: ${hand.length + remainingLetters.length}`);
   
@@ -69,6 +76,8 @@ function saveGameScore(endType) {
   previousScores.unshift(gameResult);
   localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 10)));
   displayPreviousScores();
+  hasGameBeenSaved = true;
+  console.log('Game marked as saved');
 }
 
 function displayPreviousScores() {
@@ -100,6 +109,8 @@ function endGame(giveUp = false) {
 }
 
 function resetGame() {
+  hasGameBeenSaved = false;
+  console.log('Reset game - cleared saved flag');
   score = 0;
   hand = [];
   usedTiles = 0;
