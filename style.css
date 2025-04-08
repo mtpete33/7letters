@@ -52,10 +52,11 @@ h3 {
 
 .tile {
   width: 43px;
-  height: 43px;
+  /* height: 43px; */
+  height: 55px;
   background: #fff;
   border: 1px solid #333;
-  font-size: 31px;
+  font-size: 33px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +261,7 @@ button:hover {
 
 
 #clearInput {
-  padding: 10px 8px;
+  padding: 10px 12px;
   font-size: 16px;
   border: 1px solid black;
   border-radius: 5px;
