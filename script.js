@@ -313,25 +313,32 @@ async function submitWord() {
   if (!isValid) {
     if (word === "QUONE") {
       const messageDiv = document.getElementById('message');
+      messageDiv.classList.remove('fade-out');
       messageDiv.innerHTML = 'Loading...';
+      
       const img = new Image();
       img.onload = () => {
-        messageDiv.innerHTML = '';
+        const container = document.createElement('div');
+        container.style.padding = "10px";
+        
         img.style.maxWidth = "250px";
         img.style.marginTop = "10px";
         img.style.display = "block";
-        messageDiv.appendChild(img);
+        container.appendChild(img);
 
         const quoteText = document.createElement('div');
         quoteText.style.marginTop = "10px";
         quoteText.style.fontStyle = "italic";
         quoteText.textContent = "If a patient gets difficult, you QUONE him.";
-        messageDiv.appendChild(quoteText);
+        container.appendChild(quoteText);
 
         const invalidText = document.createElement('div');
         invalidText.style.marginTop = "5px";
         invalidText.textContent = "Not a valid word. Try again.";
-        messageDiv.appendChild(invalidText);
+        container.appendChild(invalidText);
+        
+        messageDiv.innerHTML = '';
+        messageDiv.appendChild(container);
       };
       img.onerror = (e) => {
         console.error("Failed to load QUONE image:", e);
