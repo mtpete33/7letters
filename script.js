@@ -307,102 +307,104 @@ async function submitWord() {
   isSubmitting = true;
   submitButton.disabled = true;
 
-  if (word.length < 2) {
-    updateMessage("Word must be at least 2 letters long");
-    return;
-  }
-
-  if (!canMakeWord(word)) {
-    updateMessage("Can't make this word with your current tiles");
-    return;
-  }
-
-  const isValid = await checkWordValidity(word);
-  if (!isValid) {
-    if (word === "QUONE") {
-      const messageDiv = document.getElementById('message');
-      messageDiv.classList.remove('fade-out');
-      messageDiv.innerHTML = 'Loading...';
-      
-      const img = new Image();
-      img.onload = () => {
-        const container = document.createElement('div');
-        container.style.padding = "10px";
-        container.style.display = "flex";
-        container.style.flexDirection = "column";
-        container.style.alignItems = "center";
-        
-        img.style.maxWidth = "250px";
-        img.style.marginTop = "10px";
-        img.style.display = "block";
-        container.appendChild(img);
-
-        const quoteText = document.createElement('div');
-        quoteText.style.marginTop = "10px";
-        quoteText.style.fontStyle = "italic";
-        quoteText.textContent = "If a patient gets difficult, you QUONE him.";
-        container.appendChild(quoteText);
-
-        const invalidText = document.createElement('div');
-        invalidText.style.marginTop = "5px";
-        invalidText.textContent = "Not a valid word. Try again.";
-        container.appendChild(invalidText);
-        
-        messageDiv.innerHTML = '';
-        messageDiv.appendChild(container);
-      };
-      img.onerror = (e) => {
-        console.error("Failed to load QUONE image:", e);
-        img.src = "./images/quone.jpg";
-        img.onerror = (e) => {
-          console.error("Failed to load fallback QUONE image:", e);
-          messageDiv.textContent = "QUONE!";
-        };
-      };
-      img.src = "./images/quone.webp";
-      img.alt = "QUONE";
-    } else {
-      updateMessage("Not a valid word");
+  try {
+    if (word.length < 2) {
+      updateMessage("Word must be at least 2 letters long");
+      return;
     }
+
+    if (!canMakeWord(word)) {
+      updateMessage("Can't make this word with your current tiles");
+      return;
+    }
+
+    const isValid = await checkWordValidity(word);
+    if (!isValid) {
+      if (word === "QUONE") {
+        const messageDiv = document.getElementById('message');
+        messageDiv.classList.remove('fade-out');
+        messageDiv.innerHTML = 'Loading...';
+        
+        const img = new Image();
+        img.onload = () => {
+          const container = document.createElement('div');
+          container.style.padding = "10px";
+          container.style.display = "flex";
+          container.style.flexDirection = "column";
+          container.style.alignItems = "center";
+          
+          img.style.maxWidth = "250px";
+          img.style.marginTop = "10px";
+          img.style.display = "block";
+          container.appendChild(img);
+
+          const quoteText = document.createElement('div');
+          quoteText.style.marginTop = "10px";
+          quoteText.style.fontStyle = "italic";
+          quoteText.textContent = "If a patient gets difficult, you QUONE him.";
+          container.appendChild(quoteText);
+
+          const invalidText = document.createElement('div');
+          invalidText.style.marginTop = "5px";
+          invalidText.textContent = "Not a valid word. Try again.";
+          container.appendChild(invalidText);
+          
+          messageDiv.innerHTML = '';
+          messageDiv.appendChild(container);
+        };
+        img.onerror = (e) => {
+          console.error("Failed to load QUONE image:", e);
+          img.src = "./images/quone.jpg";
+          img.onerror = (e) => {
+            console.error("Failed to load fallback QUONE image:", e);
+            messageDiv.textContent = "QUONE!";
+          };
+        };
+        img.src = "./images/quone.webp";
+        img.alt = "QUONE";
+      } else {
+        updateMessage("Not a valid word");
+      }
+      display.textContent = ''; // Clear the display
+      document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
+      return;
+    }
+
+    usedTiles += word.length;
+    const points = word.length === 7 ? 15 : 
+                  word.length === 6 ? 8 : 
+                  word.length === 5 ? 7 : 
+                  word.length === 4 ? 5 : 
+                  word.length === 3 ? 3 : 2;
+    score += points;
+
+    const messageDiv = document.getElementById('message');
+    messageDiv.classList.remove('fade-out');
+    messageDiv.style.color = '#4CAF50';
+    messageDiv.innerHTML = `${word}<br>+${points}pts!`;
+    setTimeout(() => {
+      messageDiv.classList.add('fade-out');
+      setTimeout(() => {
+        messageDiv.textContent = '';
+        messageDiv.style.color = '';
+      }, 1000);
+    }, 1000);
+
+    console.log(`Word "${word}" used ${word.length} tiles`);
+    console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
+    updateProgress();
+    removeUsedLetters(word);
+    drawTiles();
     display.textContent = ''; // Clear the display
     document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
-    return;
+    checkGameCompletion();
+
+    const definition = await getWordDefinition(word);
+    addWordToHistory(word, definition);
+  } finally {
+    isSubmitting = false;
+    document.getElementById('submitWord').disabled = false;
   }
-
-  usedTiles += word.length;
-  const points = word.length === 7 ? 15 : 
-                word.length === 6 ? 8 : 
-                word.length === 5 ? 7 : 
-                word.length === 4 ? 5 : 
-                word.length === 3 ? 3 : 2;
-  score += points;
-
-  const messageDiv = document.getElementById('message');
-  messageDiv.classList.remove('fade-out');
-  messageDiv.style.color = '#4CAF50';
-  messageDiv.innerHTML = `${word}<br>+${points}pts!`;
-  setTimeout(() => {
-    messageDiv.classList.add('fade-out');
-    setTimeout(() => {
-      messageDiv.textContent = '';
-      messageDiv.style.color = '';
-    }, 1000);
-  }, 1000);
-
-  console.log(`Word "${word}" used ${word.length} tiles`);
-  console.log(`Total tiles used: ${usedTiles} out of ${totalTiles}`);
-  updateProgress();
-  removeUsedLetters(word);
-  drawTiles();
-  display.textContent = ''; // Clear the display
-  document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
-  checkGameCompletion();
-
-  const definition = await getWordDefinition(word);
-  addWordToHistory(word, definition);
-} finally {
-  isSubmitting = false;
-  document.getElementById('submitWord').disabled = false;
 }
 
 
