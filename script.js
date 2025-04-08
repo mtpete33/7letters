@@ -98,6 +98,11 @@ function endGame(giveUp = false) {
       // Remove confetti after animation
       setTimeout(() => confetti.remove(), 5000);
     }
+    // Save score for win condition
+    saveGameScore('solitaire');
+  } else if (giveUp) {
+    // Save score for give up condition
+    saveGameScore('incomplete');
   }
 
   const message = giveUp ? 
@@ -115,9 +120,6 @@ function endGame(giveUp = false) {
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordDisplay').textContent = ''; // Clear the display
-
-  // Save score in all cases
-  saveGameScore(endType);
 }
 
 function resetGame() {
