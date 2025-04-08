@@ -1,9 +1,4 @@
-// Test mode - uncomment this for quick endgame testing
-const letterBag = {
-  A: 1, T: 1  // Only 2 tiles needed to win
-};
-
-// Regular game - comment this out during testing
+// Regular game bag
 // const letterBag = {
 //   A: 4, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
 //   I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
@@ -16,6 +11,11 @@ const letterBag = {
 //   E: 2, O: 2, N: 2,
 //   Q: 2, U: 2 
 // };
+
+// Test mode - uncomment this for quick endgame testing
+const letterBag = {
+  A: 1, T: 1 
+};
 
 let remainingLetters = [];
 let hand = [];
