@@ -142,15 +142,27 @@ button:hover {
   margin-bottom: 20px;
 }
 
+@media screen and (min-width: 768px) {
+  .history-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  #previous-scores, #word-history {
+    width: 48%;
+    margin: 15px 0;
+  }
+}
+
 #previous-scores, #word-history {
-  margin: 15px;
   padding: 10px;
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid black;
   max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 15px auto;
 }
 
 #words-list {
