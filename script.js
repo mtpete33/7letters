@@ -106,7 +106,7 @@ function endGame(giveUp = false) {
   const tilesLeft = hand.length + remainingLetters.length;
   const message = giveUp ? 
     `Game Over!\n\nYou had ${tilesLeft} tiles left. Try again?` :
-    `Game Over!\n\nYou used ${progressPercent}% of available tiles`;
+    `Game Over!`;
   const congratsDiv = document.getElementById('congratsMessage');
   congratsDiv.innerHTML = message.replace(/\n/g, '<br>');
   congratsDiv.style.color = '#000000';
