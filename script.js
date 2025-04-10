@@ -71,7 +71,8 @@ function saveGameScore(endType) {
     score,
     tilesLeft: hand.length + remainingLetters.length,
     date: new Date().toLocaleDateString(),
-    endType
+    endType,
+    progressPercent
   };
   previousScores.unshift(gameResult);
   localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 10)));
