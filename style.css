@@ -417,13 +417,13 @@ button:hover {
 
 @media screen and (max-width: 400px) {
 .tile-container {
-  gap: 5px;
+  gap: 8px;
 }
 }
 
 @media screen and (max-width: 350px) {
 .tile-container {
-  gap: 2px;
+  gap: 5px;
 }
 }
 
