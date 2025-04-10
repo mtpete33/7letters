@@ -1,0 +1,51 @@
+function saveGameScore(endType) {
+  if (hasGameBeenSaved) {
+    console.log('Game already saved, skipping duplicate save');
+    return;
+  }
+  
+  console.log(`Saving score - called from: ${new Error().stack.split('\n')[2].trim()}`);
+  console.log(`Save details - Score: ${score}, EndType: ${endType}, TilesLeft: ${hand.length + remainingLetters.length}`);
+  
+  const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+  const gameResult = {
+    score,
+    tilesLeft: hand.length + remainingLetters.length,
+    date: new Date().toLocaleDateString(),
+    endType
+  };
+  previousScores.unshift(gameResult);
+  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 10)));
+  displayPreviousScores();
+  hasGameBeenSaved = true;
+  console.log('Game marked as saved');
+}
+
+function displayPreviousScores() {
+  const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const scoresList = document.getElementById('scores-list');
+  scoresList.innerHTML = scores.map(game => {
+    const endMessage = game.endType === 'solitaire' ? 'Win! 100%' : `${game.tilesLeft} tiles left`;
+    return `<li>${game.score} points (${endMessage}) - ${game.date}</li>`;
+  }).join('');
+}
+
+function endGame(giveUp = false) {
+  const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+  saveGameScore('incomplete');
+  
+  const message = `Game Over! You used ${progressPercent}% of available tiles`;
+  const congratsDiv = document.getElementById('congratsMessage');
+  congratsDiv.textContent = message;
+  congratsDiv.style.color = '#000000';
+  
+  document.getElementById('message').textContent = '';
+  document.getElementById('message').style.display = 'none';
+  document.getElementById('playAgain').style.display = 'inline-block';
+  document.getElementById('newHand').style.display = 'none';
+  document.getElementById('giveUp').style.display = 'none';
+  document.getElementById('submitWord').style.display = 'none';
+  document.getElementById('submitWord').disabled = true;
+  document.getElementById('wordDisplay').textContent = '';
+}
