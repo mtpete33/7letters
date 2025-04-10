@@ -14,7 +14,7 @@
 
 // Test mode - uncomment this for quick endgame testing
 const letterBag = {
-  A: 6, T: 6 
+  A: 1, T: 1 
 };
 
 let remainingLetters = [];
