@@ -200,7 +200,9 @@ function checkGameCompletion() {
       document.getElementById('playAgain').style.display = 'inline-block';
       document.getElementById('newHand').style.display = 'none';
       document.getElementById('giveUp').style.display = 'none';
-      // document.getElementById('submitWord').style.display = 'none';
+      document.getElementById('submitWord').style.display = 'none';
+      document.getElementById('clearInput').style.display = 'none';
+      document.getElementById('wordDisplay').style.display = 'none';
       document.getElementById('submitWord').disabled = true;
       document.getElementById('wordDisplay').textContent = '';
     }
