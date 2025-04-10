@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Word Solitaire</title>
+  <title>7Letters</title>
   <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,17 +23,22 @@
 </head>
 <body>
   
-  <h1>Word Solitaire</h1>
+  <h1><span style="font-size:43px;top: 7px;
+        position: relative;
+        left: 2px;">7</span>Letters</h1>
+  <div id="rulesBtn-container">
   <button id="rulesBtn">Rules</button>
+    </div>
   <div id="rulesModal" class="modal">
     <div class="modal-content">
-      <h2>How To Play</h2>
+      <h2>7Letters</h2>
       <h4 style="margin-bottom: 0;">"A little luck, a little skill, a lotta fun"</h4>
       <span style="margin-top: 0;">-Mike</span>
       <div class="rules-text">
+        <h4>How to play</h4>
         <p>You have 7 letter tiles in your hand, and 42 in the bag. Make valid Scrabble words out of your hand by clicking the letters and submitting the word for points. (2-letter minimum words).</p>
         <p>Submitted words are checked against the Scrabble dictionary, so try different combinations, there are lots of valid words you may not be aware of.</p>
-        <p>When you play a word your hand will be replenished with tiles from the bag. To WIN, use up ALL letter tiles while scoring the highest point total possible.</p>
+        <p>When you play a word your hand will be replenished with tiles from the bag. To WIN, use up ALL 49 letter tiles while scoring the highest point total possible.</p>
         
         <h4>Points:</h4>
         <ul>
@@ -110,7 +115,7 @@
 
   <footer>
     Created by Michael Peterson <a href="https://www.mp-webdev.replit.app" target="_blank">MP WebDev</a>
-    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSceaDB1ia9X9ahfWkvPZIoWnRzjUXD5iBdBl7g8xT0KQiHXTQ/viewform?usp=header" target="_blank">Feedback?</a></p>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSceaDB1ia9X9ahfWkvPZIoWnRzjUXD5iBdBl7g8xT0KQiHXTQ/viewform?usp=header" target="_blank">Feedback?</a> - Help improve the game!</p>
   </footer>
   <script src="script.js"></script>
 </body>
