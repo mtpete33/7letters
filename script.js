@@ -63,7 +63,16 @@ function saveGameScore(endType) {
   }
   
   console.log(`Saving score - called from: ${new Error().stack.split('\n')[2].trim()}`);
-  console.log(`Save details - Score: ${score}, EndType: ${endType}, TilesLeft: ${hand.length + remainingLetters.length}`);
+  console.log('Save details:', {
+    score,
+    endType,
+    tilesLeft: hand.length + remainingLetters.length,
+    usedTiles,
+    totalTiles,
+    progressPercent: Math.round((usedTiles / totalTiles) * 100),
+    handLength: hand.length,
+    remainingLettersLength: remainingLetters.length
+  });
   
   const previousScores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
@@ -142,8 +151,20 @@ function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
     const progressPercent = Math.round((usedTiles / totalTiles) * 100);
     if (progressPercent === 100) {
+      console.log('Game completion check - Before bonus:', {
+        score,
+        usedTiles,
+        totalTiles,
+        progressPercent
+      });
       score += 15;
       updateProgress();
+      console.log('Game completion check - After bonus:', {
+        score,
+        usedTiles,
+        totalTiles,
+        progressPercent
+      });
       // Save the score after adding bonus points
       setTimeout(() => saveGameScore('solitaire'), 0);
       
