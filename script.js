@@ -100,7 +100,7 @@ function displayPreviousScores() {
 }
 
 function endGame(giveUp = false) {
-  const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+  // const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   saveGameScore('incomplete');
   
   const tilesLeft = hand.length + remainingLetters.length;
@@ -151,7 +151,6 @@ function resetGame() {
 
   shuffleDeck();
   drawTiles();
-  // document.getElementById('wordInput').focus();  // Removed focus
 }
 
 function checkGameCompletion() {
