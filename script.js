@@ -110,6 +110,7 @@ function endGame(giveUp = false) {
   congratsDiv.textContent = message;
   congratsDiv.style.color = '#000000';
   
+  // Hide all game input elements
   document.getElementById('message').textContent = '';
   document.getElementById('message').style.display = 'none';
   document.getElementById('playAgain').style.display = 'inline-block';
@@ -118,8 +119,11 @@ function endGame(giveUp = false) {
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('clearInput').style.display = 'none';
   document.getElementById('wordDisplay').style.display = 'none';
+  // Clear and disable inputs
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordDisplay').textContent = '';
+  // Reset any active tiles
+  document.querySelectorAll('.tile.active').forEach(tile => tile.classList.remove('active'));
 }
 
 function resetGame() {
