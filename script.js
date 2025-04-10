@@ -104,9 +104,7 @@ function endGame(giveUp = false) {
   saveGameScore('incomplete');
   
   const tilesLeft = hand.length + remainingLetters.length;
-  const message = giveUp ? 
-    `Game Over!\n\nYou had ${tilesLeft} tiles left. Try again?` :
-    `Game Over!`;
+  const message = `Game Over!\n\nYou had ${tilesLeft} tiles left. Try again?`;
   const congratsDiv = document.getElementById('congratsMessage');
   congratsDiv.innerHTML = message.replace(/\n/g, '<br>');
   congratsDiv.style.color = '#000000';
