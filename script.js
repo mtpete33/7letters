@@ -150,7 +150,7 @@ function resetGame() {
 function checkGameCompletion() {
   if (remainingLetters.length === 0 && hand.length === 0) {
     const progressPercent = Math.round((usedTiles / totalTiles) * 100);
-    if (progressPercent === 100) {
+    if (progressPercent === 100 && !hasGameBeenSaved) {
       console.log('Game completion check - Before bonus:', {
         score,
         usedTiles,
@@ -166,7 +166,7 @@ function checkGameCompletion() {
         progressPercent
       });
       // Save the score after adding bonus points
-      setTimeout(() => saveGameScore('solitaire'), 0);
+      saveGameScore('solitaire');
       
       // Create confetti
       const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
