@@ -99,8 +99,7 @@ function displayPreviousScores() {
   }).join('');
 }
 
-function endGame(giveUp = false) {
-  // const progressPercent = Math.round((usedTiles / totalTiles) * 100);
+function endGame() {
   saveGameScore('incomplete');
   
   const tilesLeft = hand.length + remainingLetters.length;
@@ -506,7 +505,7 @@ document.getElementById('giveUp').onclick = () => {
   showConfirmModal(
     'Are you sure?',
     'Do you really want to give up?',
-    () => endGame(true)
+    () => endGame()
   );
 };
 
