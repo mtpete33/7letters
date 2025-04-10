@@ -141,7 +141,8 @@ function checkGameCompletion() {
     if (progressPercent === 100) {
       score += 15;
       updateProgress();
-      saveGameScore('solitaire');
+      // Save the score after adding bonus points
+      setTimeout(() => saveGameScore('solitaire'), 0);
       
       // Create confetti
       const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
