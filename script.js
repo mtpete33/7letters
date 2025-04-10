@@ -93,7 +93,9 @@ function endGame(giveUp = false) {
   const progressPercent = Math.round((usedTiles / totalTiles) * 100);
   saveGameScore('incomplete');
   
-  const message = `Game Over! You used ${progressPercent}% of available tiles`;
+  const message = giveUp ? 
+    `Game Over! You gave up with ${progressPercent}% of tiles used` :
+    `Game Over! You used ${progressPercent}% of available tiles`;
   const congratsDiv = document.getElementById('congratsMessage');
   congratsDiv.textContent = message;
   congratsDiv.style.color = '#000000';
