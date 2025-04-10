@@ -233,10 +233,6 @@ function renderHand() {
             if (letterUsedCount < letterCount) {
                 display.textContent += letter;
                 tileDiv.classList.add('active');
-                requestAnimationFrame(() => {
-                    tileDiv.classList.add('selected');
-                    setTimeout(() => tileDiv.classList.remove('selected'), 15);
-                });
             } else {
                 updateMessage(`You can only use "${letter}" ${letterCount} time${letterCount === 1 ? '' : 's'}`);
             }
