@@ -116,6 +116,8 @@ function endGame(giveUp = false) {
   document.getElementById('newHand').style.display = 'none';
   document.getElementById('giveUp').style.display = 'none';
   document.getElementById('submitWord').style.display = 'none';
+  document.getElementById('clearInput').style.display = 'none';
+  document.getElementById('wordDisplay').style.display = 'none';
   document.getElementById('submitWord').disabled = true;
   document.getElementById('wordDisplay').textContent = '';
 }
@@ -138,6 +140,8 @@ function resetGame() {
   document.getElementById('newHand').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
   document.getElementById('submitWord').style.display = 'inline-block';
+  document.getElementById('clearInput').style.display = 'inline-block';
+  document.getElementById('wordDisplay').style.display = 'block';
   document.getElementById('newHand').disabled = false;
   document.getElementById('giveUp').disabled = false;
   document.getElementById('submitWord').disabled = false;
