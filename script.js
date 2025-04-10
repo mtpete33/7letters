@@ -94,7 +94,7 @@ function displayPreviousScores() {
   const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = scores.map(game => {
-    const endMessage = game.endType === 'solitaire' ? 'Win! 100%' : `${game.tilesLeft} tiles left`;
+    const endMessage = game.endType === 'solitaire' ? 'Win!' : `${game.tilesLeft} tiles left`;
     return `<li>${game.score} points (${endMessage}) - ${game.date}</li>`;
   }).join('');
 }
@@ -192,7 +192,7 @@ function checkGameCompletion() {
       document.getElementById('playAgain').style.display = 'inline-block';
       document.getElementById('newHand').style.display = 'none';
       document.getElementById('giveUp').style.display = 'none';
-      document.getElementById('submitWord').style.display = 'none';
+      // document.getElementById('submitWord').style.display = 'none';
       document.getElementById('submitWord').disabled = true;
       document.getElementById('wordDisplay').textContent = '';
     }
@@ -497,7 +497,7 @@ function showConfirmModal(title, message, onConfirm) {
 document.getElementById('giveUp').onclick = () => {
   showConfirmModal(
     'Are you sure?',
-    'Do you really want to give up this game?',
+    'Do you really want to give up?',
     () => endGame(true)
   );
 };
@@ -505,7 +505,7 @@ document.getElementById('giveUp').onclick = () => {
 document.getElementById('newHand').onclick = () => {
   showConfirmModal(
     'Deal New Hand?',
-    'This will cost 1 point. Are you sure?',
+    'You will get 7 random new letter tiles. This will cost 1 point. Are you sure?',
     getNewHand
   );
 };
