@@ -103,7 +103,7 @@ function endGame() {
   saveGameScore('incomplete');
   
   const tilesLeft = hand.length + remainingLetters.length;
-  const message = tilesLeft < 10 
+  const message = tilesLeft < 3 
     ? `So close! You had ${tilesLeft} tiles left. Try again?`
     : `Game Over!\n\nYou had ${tilesLeft} tiles left. Try again?`;
   const congratsDiv = document.getElementById('congratsMessage');
