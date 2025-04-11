@@ -328,6 +328,7 @@ button:hover {
   background: #eee;
   border-radius: 10px;
   overflow: hidden;
+  margin-left: 20px;
 }
 
 .progress {
