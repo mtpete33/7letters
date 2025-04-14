@@ -101,6 +101,7 @@ button {
   color: white;
   transition: all 0.3s ease;
   font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: bold;
 }
 
 button:hover {
@@ -119,10 +120,11 @@ button:active {
 #shuffleLetters {
   background-color: #39b19f;
   padding: 10px 9px;
+  margin: 0;
 }
 
 #shuffleLetters:hover {
-  background-color: #0b423a;
+  background-color: #237b6e;
 }
 
 #message {
@@ -158,7 +160,7 @@ button:active {
 #newHand {
   /* background-color: #ff9800; */
   background-color: #00adff;
-
+  padding: 13px 15px;
 }
 
 #newHand:hover {
@@ -309,7 +311,7 @@ button:active {
 
 #submitWord {
   margin-left: 0;
-  padding: 10px 24px;
+  padding: 13px 38px;
 }
 
 #clearInput:hover {
@@ -443,6 +445,26 @@ button:active {
 .tile-container {
   gap: 5px;
 }
+}
+
+@media screen and (max-width: 355px) {
+  #submitWord {
+    margin-left: 0;
+    padding: 10px 20px;
+}
+}
+
+@media screen and (max-width: 320px) {
+  #newHand {
+    margin-left: 0;
+    padding: 10px 10px;
+}
+  #wordDisplay {
+    padding: 10px 6px;
+    margin: 0;
+  }
+  .input-group {
+    gap: 5px;
 }
 
 @media screen and (min-width: 470px) {

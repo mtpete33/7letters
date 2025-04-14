@@ -84,7 +84,7 @@ function saveGameScore(endType) {
     progressPercent
   };
   previousScores.unshift(gameResult);
-  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 10)));
+  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 5)));
   displayPreviousScores();
   hasGameBeenSaved = true;
   console.log('Game marked as saved');
@@ -288,6 +288,7 @@ function getNewHand() {
   score -= 1;
   updateProgress();
   drawTiles(7);
+  document.getElementById('wordDisplay').textContent = '';
 }
 
 function updateMessage(text) {
@@ -301,7 +302,7 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON', 'DOZ', 'IE']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON', 'DOZ', 'IE', 'JOL']);
 
   if (invalidWords.has(word)) {
     return false;
