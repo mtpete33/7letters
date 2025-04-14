@@ -93,8 +93,9 @@ function saveGameScore(endType) {
 
 function displayPreviousScores() {
   const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
+  const recentScores = scores.slice(0, 5);
   const scoresList = document.getElementById('scores-list');
-  scoresList.innerHTML = scores.map(game => {
+  scoresList.innerHTML = recentScores.map(game => {
     const endMessage = game.endType === 'solitaire' ? 'Win!' : `${game.tilesLeft} tiles left`;
     return `<li>${game.score} points (${endMessage}) - ${game.date}</li>`;
   }).join('');
