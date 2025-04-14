@@ -285,10 +285,6 @@ function removeUsedLetters(word) {
 }
 
 function getNewHand() {
-  if (remainingLetters.length <= 8) {
-    updateMessage("You don't have enough tiles in the bag to do this");
-    return;
-  }
   remainingLetters.push(...hand.map(tile => tile.letter));
   hand = [];
   score -= 1;
@@ -526,6 +522,10 @@ document.getElementById('giveUp').onclick = () => {
 };
 
 document.getElementById('newHand').onclick = () => {
+  if (remainingLetters.length <= 8) {
+    updateMessage("You don't have enough tiles in the bag to do this");
+    return;
+  }
   showConfirmModal(
     'Deal New Hand?',
     'You will get 7 random new letter tiles and lose 1 point. Are you sure?',
