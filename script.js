@@ -84,7 +84,8 @@ function saveGameScore(endType) {
     progressPercent
   };
   previousScores.unshift(gameResult);
-  localStorage.setItem('wordSolitaireScores', JSON.stringify(previousScores.slice(0, 5)));
+  const recentScores = previousScores.slice(0, 5);
+  localStorage.setItem('wordSolitaireScores', JSON.stringify(recentScores));
   displayPreviousScores();
   hasGameBeenSaved = true;
   console.log('Game marked as saved');
