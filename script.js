@@ -607,8 +607,12 @@ window.onclick = (event) => {
     for (let i = hand.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [hand[i], hand[j]] = [hand[j], hand[i]];
+      hand[i].isNew = true;
+      hand[j].isNew = true;
     }
     renderHand();
+    // Reset the isNew flag after rendering
+    hand.forEach(tile => tile.isNew = false);
 };
 
 shuffleDeck();
