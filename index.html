@@ -33,9 +33,10 @@
 </head>
 <body>
   
-  <h1><span style="font-size:43px;top: 7px;
+  <h1><span style="font-size:43px;top: 5px;
         position: relative;
         left: 2px;">7</span>Letters</h1>
+  <h4 style="margin: 0 0 5px 0;">Solitaire</h4>
   <div id="rulesBtn-container">
   <button id="rulesBtn">Rules</button>
     </div>
@@ -85,16 +86,18 @@
   <div class="input-group">
     <button id="clearInput">Clear</button>
     <div id="wordDisplay"></div>
-    <button id="submitWord">Submit</button>
+    <button id="shuffleLetters" style="background-color: #39b19f; padding: 10px 9px;">Shuffle</button>
   </div>
   <div id="hand" class="tile-container outfit-tiles"></div>
 
   <div>
 
-  
-    <button id="giveUp">End Game</button>
     <button id="newHand">Deal New Hand (-1pt)</button>
     
+    
+    <button id="submitWord">Submit</button>
+    <br>
+    <button id="giveUp">End Game</button>
     <button id="playAgain" style="display: none;">Play Again</button>
   </div>
 
@@ -118,14 +121,20 @@
     </div>
     
     <div id="word-history">
-      <h3>Words Played</h3>
+      <h3 style="margin-bottom: 3px;">Words Played</h3>
+      <p style="margin: 0;">Click a word to see its definition</p>
       <ul id="words-list"></ul>
     </div>
   </div>
 
   <footer>
+    Want more word games? Try Borders Daily Word Game!<br>
+    <a href="https://bordersgame.net" target="_blank" alt="Borders Game Link"><img src="images/borderslogo.jpg" style="border: 1px solid black; width: 100px;" /></a>
+    <br><br>
     &copy;2025<a href="https://www.mp-webdev.replit.app" target="_blank"> MP WebDev</a> <br>Created by Michael Peterson
     <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSceaDB1ia9X9ahfWkvPZIoWnRzjUXD5iBdBl7g8xT0KQiHXTQ/viewform?usp=header" target="_blank">Feedback?</a> - Help improve the game!</p>
+
+    
   </footer>
   <script src="script.js"></script>
 </body>

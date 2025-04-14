@@ -14,7 +14,7 @@ const letterBag = {
 
 // Test mode - uncomment this for quick endgame testing
 // const letterBag = {
-//   A: 1, T: 1 
+//   A: 1, T: 1
 // };
 
 let remainingLetters = [];
@@ -104,7 +104,7 @@ function endGame() {
   
   const tilesLeft = hand.length + remainingLetters.length;
   const tileText = tilesLeft === 1 ? 'tile' : 'tiles';
-  const message = tilesLeft < 3 
+  const message = tilesLeft < 4 
     ? `So close! You had ${tilesLeft} ${tileText} left. Try again?`
     : `Game Over!\n\nYou had ${tilesLeft} ${tileText} left. Try again?`;
   const congratsDiv = document.getElementById('congratsMessage');
@@ -295,7 +295,7 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON', 'DOZ', 'IE']);
 
   if (invalidWords.has(word)) {
     return false;
