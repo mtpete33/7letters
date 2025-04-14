@@ -116,6 +116,8 @@ function endGame() {
   document.getElementById('message').style.display = 'none';
   document.getElementById('playAgain').style.display = 'inline-block';
   document.getElementById('newHand').style.display = 'none';
+  document.getElementById('shuffleLetters').style.display = 'none';
+  document.getElementById('hand').style.display = 'none';
   document.getElementById('giveUp').style.display = 'none';
   document.getElementById('submitWord').style.display = 'none';
   document.getElementById('clearInput').style.display = 'none';
@@ -142,7 +144,9 @@ function resetGame() {
   document.getElementById('progress').innerHTML = '<div class="progress-bar"><div class="progress" style="width: 0%"></div></div> 0%';
 
   document.getElementById('playAgain').style.display = 'none';
+  document.getElementById('hand').style.display = 'flex';
   document.getElementById('newHand').style.display = 'inline-block';
+  document.getElementById('shuffleLetters').style.display = 'inline-block';
   document.getElementById('giveUp').style.display = 'inline-block';
   document.getElementById('submitWord').style.display = 'inline-block';
   document.getElementById('clearInput').style.display = 'inline-block';
@@ -197,8 +201,10 @@ function checkGameCompletion() {
       
       document.getElementById('message').textContent = '';
       document.getElementById('message').style.display = 'none';
+      document.getElementById('hand').style.display = 'none';
       document.getElementById('playAgain').style.display = 'inline-block';
       document.getElementById('newHand').style.display = 'none';
+      document.getElementById('shuffleLetters').style.display = 'none';
       document.getElementById('giveUp').style.display = 'none';
       document.getElementById('submitWord').style.display = 'none';
       document.getElementById('clearInput').style.display = 'none';
@@ -515,7 +521,7 @@ document.getElementById('giveUp').onclick = () => {
 document.getElementById('newHand').onclick = () => {
   showConfirmModal(
     'Deal New Hand?',
-    'You will get 7 random new letter tiles. This will cost 1 point. Are you sure?',
+    'You will get 7 random new letter tiles and lose 1 point. Are you sure?',
     getNewHand
   );
 };
@@ -593,6 +599,16 @@ window.onclick = (event) => {
   if (event.target === rulesModal) {
     rulesModal.style.display = 'none';
   }
+
+};
+  // Shuffle button handler
+  document.getElementById('shuffleLetters').onclick = () => {
+    // Randomly reorder the hand array
+    for (let i = hand.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [hand[i], hand[j]] = [hand[j], hand[i]];
+    }
+    renderHand();
 };
 
 shuffleDeck();
