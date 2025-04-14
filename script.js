@@ -285,6 +285,10 @@ function removeUsedLetters(word) {
 }
 
 function getNewHand() {
+  if (remainingLetters.length <= 8) {
+    updateMessage("You don't have enough tiles in the bag to do this");
+    return;
+  }
   remainingLetters.push(...hand.map(tile => tile.letter));
   hand = [];
   score -= 1;
