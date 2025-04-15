@@ -84,7 +84,7 @@ function saveGameScore(endType) {
     progressPercent
   };
   previousScores.unshift(gameResult);
-  const recentScores = previousScores.slice(0, 5);
+  const recentScores = previousScores.slice(0, 10);
   localStorage.setItem('wordSolitaireScores', JSON.stringify(recentScores));
   displayPreviousScores();
   hasGameBeenSaved = true;
@@ -93,7 +93,7 @@ function saveGameScore(endType) {
 
 function displayPreviousScores() {
   const scores = JSON.parse(localStorage.getItem('wordSolitaireScores') || '[]');
-  const recentScores = scores.slice(0, 5);
+  const recentScores = scores.slice(0, 10);
   const scoresList = document.getElementById('scores-list');
   scoresList.innerHTML = recentScores.map(game => {
     const endMessage = game.endType === 'solitaire' ? 'Win!' : `${game.tilesLeft} tiles left`;
