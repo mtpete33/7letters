@@ -1,10 +1,10 @@
 // Regular game letter bag
-// const letterBag = {
-//   A: 5, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
-//   I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
-//   Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
-//   Y: 1, Z: 1
-// };
+const letterBag = {
+  A: 5, B: 1, C: 1, D: 2, E: 4, F: 1, G: 1, H: 1,
+  I: 4, J: 1, K: 1, L: 2, M: 1, N: 3, O: 4, P: 1,
+  Q: 1, R: 3, S: 2, T: 3, U: 3, V: 1, W: 1, X: 1,
+  Y: 1, Z: 1
+};
 
 // Uncomment for testing QUONE
 // const letterBag = {
@@ -13,9 +13,9 @@
 // };
 
 // Test mode - uncomment this for quick endgame testing
-const letterBag = {
-  A: 1, T: 1
-};
+// const letterBag = {
+//   A: 1, T: 1
+// };
 
 let remainingLetters = [];
 let hand = [];
@@ -304,7 +304,7 @@ function updateMessage(text) {
 }
 
 async function checkWordValidity(word) {
-  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON', 'DOZ', 'IE', 'JOL']);
+  const invalidWords = new Set(['HED', 'EDS', 'ENS', 'EMS', 'ELS', 'AES', 'ARS', 'UTS', 'TES', 'KI', 'YI', 'JAN', 'ZE', 'RI', 'UV', 'THOT', 'RAV', 'FY', 'SAV', 'ZOL', 'UNIX', 'UR', 'CRAN', 'QUEEF', 'CLIT', 'CUNT', 'OU', 'JOOK', 'BRU', 'FUCK', 'AU', 'JIP', 'AZN', 'IO', 'JEW', 'JAP', 'TIG', 'HUI', 'TIK', 'SPIC', 'SHIT', 'JAT', 'RON', 'DOZ', 'IE', 'JOL', 'WU']);
 
   if (invalidWords.has(word)) {
     return false;
@@ -522,7 +522,7 @@ document.getElementById('giveUp').onclick = () => {
 };
 
 document.getElementById('newHand').onclick = () => {
-  if (remainingLetters.length <= 8) {
+  if (remainingLetters.length <= 7) {
     updateMessage("You don't have enough tiles in the bag to do this");
     return;
   }

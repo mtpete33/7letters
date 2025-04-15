@@ -55,8 +55,7 @@ h3 {
 }
 
 .tile {
-  width: 43px;
-  /* height: 43px; */
+  width: 55px;
   height: 55px;
   background: #fff;
   border: 1px solid #333;
@@ -437,7 +436,7 @@ button:active {
 
 @media screen and (max-width: 400px) {
 .tile-container {
-  gap: 8px;
+  gap: 6px;
 }
 }
 
@@ -465,6 +464,7 @@ button:active {
   }
   .input-group {
     gap: 5px;
+}
 }
 
 @media screen and (min-width: 470px) {
