@@ -14,7 +14,7 @@ Play it live: [7letters.replit.app](https://7letters.replit.app)
 - You start with **7 random letter tiles** in your hand.
 - Make valid Scrabble words (2+ letters) from those tiles.
 - When you submit a word, your hand refills from the remaining 43-letter tile bag.
-- The goal? **Use all 50 tiles** and end with the highest score you can!
+- The goal? **Use all 50 tiles** and end with the highest score possible!
 
 ---
 
@@ -47,6 +47,8 @@ Play it live: [7letters.replit.app](https://7letters.replit.app)
 - **Game Logic:** JS-based letter bag & word validation
 - **Word Check:** Words are validated using the [Free Dictionary API](https://dictionaryapi.dev/), combined with a custom word filter to ensure fair and consistent gameplay. Some common, valid words are manually **included** for reliability (like “THE,” “OUR,” and “DUNK”), while obscure, slang, or offensive words are **excluded** to keep the experience clean and focused on real Scrabble-style vocabulary.
 - **Hosting:** Replit
+- **Storage:** Local storage holding up to 10 previous scores to track your progress across games
+- **Word Definitions:** Submitted word definitions are pulled from the Free Dictionary API
 
 ---
 
